@@ -30,13 +30,13 @@
 	}
 
 	//模拟Post请求
-	function ajaxRequestPost(uri, data) {
-	/* 	var server = serverPath;
-		var url = server + uri; */
+	function ajaxRequestPost(uri,method,data) {
+		/* 	var server = serverPath;
+			var url = server + uri; */
 		var url = uri;
 		$.ajax({
-			type : 'POST',
-			contentType: 'application/json;charset=UTF-8',//此句话需要配合 json序列化方法使用
+			type : method,
+			contentType : 'application/json;charset=UTF-8',//此句话需要配合 json序列化方法使用
 			dataType : 'json',
 			data : JSON.stringify(data),
 			url : url,
@@ -55,12 +55,40 @@
 			ajaxRequestGet("user/getAll");
 		});
 
+		$("#getAllActivities").click(function() {
+			ajaxRequestGet("activity/getAllActivities");
+		});
+
+		$("#releaseActivity").click(function() {
+			var data = {
+				'name':'敬老院活动',
+				'managerId':1,
+				'hourPerTime':4,
+				'regTime':'2018-03-03 14:00:00',
+				'regEndTime':'2018-03-04 17:00:00',
+				'interviewTime':'2018-03-05 10:30:00',
+				'startTime':'2018-03-12 10:00:00',
+				'endTime':'2018-03-12 14:00:00',
+				//'createTime': new Date(),
+				'general':'东院敬老院活动，打扫卫生',
+				'needVolunteers':10,
+				'place':'东院敬老院',
+				'type':2
+			}
+			ajaxRequestPost('activity/releaseActivity','PUT',data);
+		});
+
 	})
 </script>
 </head>
 <body>
-	<h4>User测试接口</h4>
+	<h4>User获取接口测试</h4>
 	<input type="button" value="GetAll" id="getAll" />
 
+	<h4>Activity获取接口测试</h4>
+	<input type="button" value="GetAllActivities" id="getAllActivities" />
+
+	<h4>Activity发布活动接口测试</h4>
+	<input type="button" value="ReleaseActivity" id="releaseActivity" />
 </body>
 </html>
