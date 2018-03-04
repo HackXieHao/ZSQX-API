@@ -23,7 +23,7 @@ public class UserController {
 	@RequestMapping(value = "getAll", method = RequestMethod.GET)
 	public Msg getAll(){
 		List<User> users = userService.getAll();
-		return Msg.success("处理成功").add("users", users);
+		return Msg.success("鑾峰彇鎴愬姛").add("users", users);
 	}
 	
 }

@@ -21,7 +21,7 @@ public class ActivityController {
 	private ActivityService activityService;
 	
 	/**
-	 * »ñÈ¡ËùÓĞ»î¶¯ĞÅÏ¢
+	 * è·å–æ‰€æœ‰æ´»åŠ¨ä¿¡æ¯
 	 * @return
 	 */
 	@ResponseBody
@@ -32,7 +32,7 @@ public class ActivityController {
 	}
 	
 	/**
-	 * ·¢²¼»î¶¯
+	 * å‘å¸ƒæ´»åŠ¨
 	 * @param activity
 	 * @return
 	 */
@@ -43,7 +43,7 @@ public class ActivityController {
 			activityService.releaseActivity(activity);
 			return Msg.success().add("activities", activity);
 		}else{			
-			return Msg.error("»î¶¯ĞÅÏ¢²»ÄÜÎª¿Õ");
+			return Msg.error("æ´»åŠ¨ä¿¡æ¯ä¸èƒ½ä¸ºç©º");
 		}
 	}
 	

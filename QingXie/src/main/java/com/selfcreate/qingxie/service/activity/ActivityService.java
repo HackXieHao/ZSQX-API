@@ -17,7 +17,7 @@ public class ActivityService {
 	private ActivityMapper activityMapper;
 	
 	/**
-	 * »ñÈ¡ËùÓĞ»î¶¯ĞÅÏ¢
+	 * è·å–æ‰€æœ‰æ´»åŠ¨ä¿¡æ¯
 	 * @return
 	 */
 	public List<Activity> getAll(){
@@ -27,7 +27,7 @@ public class ActivityService {
 	}
 	
 	/**
-	 * ²åÈëÒ»Ìõ»î¶¯ĞÅÏ¢£¬ÓÃÓÚ·¢²¼»î¶¯
+	 * å‘å¸ƒæ´»åŠ¨
 	 * @param activity
 	 */
 	public void releaseActivity(Activity activity){
