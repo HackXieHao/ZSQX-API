@@ -20,7 +20,8 @@ public class Msg {
 
 //	//用于封装数据
 //	private Map<String, Object> data = new HashMap<String, Object>();
-	private List<Object> data = new ArrayList<Object>();
+//	private List<Object> data = new ArrayList<Object>();
+	private Object data;
 	
 	public String getStatus() {
 		return status;
@@ -46,44 +47,56 @@ public class Msg {
 //		this.data = data;
 //	}
 	
-	public List<Object> getData() {
+//	public List<Object> getData() {
+//		return data;
+//	}
+//
+//	public void setData(List<Object> data) {
+//		this.data = data;
+//	}
+
+	public Object getData() {
 		return data;
 	}
 
-	public void setData(List<Object> data) {
+	public void setData(Object data) {
 		this.data = data;
 	}
 
 
 	//当处理成功时
-	public static Msg success() {
+	public static Msg success(Object object) {
 		Msg result = new Msg();
 		result.setStatus("success");
 		result.setMessage("处理成功");
+		result.setData(object);
 		return result;
 	}
 
 	//当处理成功时，可附带message
-	public static Msg success(String message) {
+	public static Msg success(String message,Object object) {
 		Msg result = new Msg();
 		result.setStatus("success");
 		result.setMessage(message);
+		result.setData(object);
 		return result;
 	}
 
 	//当处理失败时
-	public static Msg error() {
+	public static Msg error(Object object) {
 		Msg result = new Msg();
 		result.setStatus("error");
 		result.setMessage("处理失败");
+		result.setData(object);
 		return result;
 	}
 
 	//当处理失败时，可附带message
-	public static Msg error(String message) {
+	public static Msg error(String message,Object object) {
 		Msg result = new Msg();
 		result.setStatus("error");
 		result.setMessage(message);
+		result.setData(object);
 		return result;
 	}
 
@@ -92,9 +105,9 @@ public class Msg {
 //		this.getData().put(key, value);
 //		return this;
 //	}
-	public Msg add(Object object){
-		this.getData().add(object);
-		return this;
-	}
+//	public Msg add(Object object){
+//		this.getData().add(object);
+//		return this;
+//	}
 
 }
