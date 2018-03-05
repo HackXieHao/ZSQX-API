@@ -13,9 +13,21 @@ public class Activity {
 
 	private Integer managerId;
 
+	private String type;
+
+	private Integer status;
+
 	private Integer hours;
 
 	private Integer hourPerTime;
+
+	private Integer needVolunteers;
+
+	private String place;
+
+	private String general;
+
+	private String descriptions;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
@@ -41,22 +53,6 @@ public class Activity {
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date createTime;
 
-	private String general;
-
-	private Integer needVolunteers;
-
-	private String place;
-
-	private String descriptions;
-
-	private Integer activityDetailPictureId;
-
-	private Integer homepagePictureId;
-
-	private String type;
-
-	private Integer status;
-
 	public Integer getId() {
 		return id;
 	}
@@ -81,6 +77,22 @@ public class Activity {
 		this.managerId = managerId;
 	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type == null ? null : type.trim();
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
 	public Integer getHours() {
 		return hours;
 	}
@@ -95,6 +107,38 @@ public class Activity {
 
 	public void setHourPerTime(Integer hourPerTime) {
 		this.hourPerTime = hourPerTime;
+	}
+
+	public Integer getNeedVolunteers() {
+		return needVolunteers;
+	}
+
+	public void setNeedVolunteers(Integer needVolunteers) {
+		this.needVolunteers = needVolunteers;
+	}
+
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace(String place) {
+		this.place = place == null ? null : place.trim();
+	}
+
+	public String getGeneral() {
+		return general;
+	}
+
+	public void setGeneral(String general) {
+		this.general = general == null ? null : general.trim();
+	}
+
+	public String getDescriptions() {
+		return descriptions;
+	}
+
+	public void setDescriptions(String descriptions) {
+		this.descriptions = descriptions == null ? null : descriptions.trim();
 	}
 
 	public Date getRegTime() {
@@ -143,69 +187,5 @@ public class Activity {
 
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
-	}
-
-	public String getGeneral() {
-		return general;
-	}
-
-	public void setGeneral(String general) {
-		this.general = general == null ? null : general.trim();
-	}
-
-	public Integer getNeedVolunteers() {
-		return needVolunteers;
-	}
-
-	public void setNeedVolunteers(Integer needVolunteers) {
-		this.needVolunteers = needVolunteers;
-	}
-
-	public String getPlace() {
-		return place;
-	}
-
-	public void setPlace(String place) {
-		this.place = place == null ? null : place.trim();
-	}
-
-	public String getDescriptions() {
-		return descriptions;
-	}
-
-	public void setDescriptions(String descriptions) {
-		this.descriptions = descriptions == null ? null : descriptions.trim();
-	}
-
-	public Integer getActivityDetailPictureId() {
-		return activityDetailPictureId;
-	}
-
-	public void setActivityDetailPictureId(Integer activityDetailPictureId) {
-		this.activityDetailPictureId = activityDetailPictureId;
-	}
-
-	public Integer getHomepagePictureId() {
-		return homepagePictureId;
-	}
-
-	public void setHomepagePictureId(Integer homepagePictureId) {
-		this.homepagePictureId = homepagePictureId;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type == null ? null : type.trim();
-	}
-
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
 	}
 }
