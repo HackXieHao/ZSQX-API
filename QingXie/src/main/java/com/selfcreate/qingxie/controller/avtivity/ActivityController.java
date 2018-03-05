@@ -28,7 +28,7 @@ public class ActivityController {
 	@RequestMapping(value = "getAllActivities",method = RequestMethod.GET)
 	public Msg getAllActivities(){
 		List<Activity> activities = activityService.getAll();
-		return Msg.success().add("activities", activities);
+		return Msg.success().add(activities);
 	}
 	
 	/**
@@ -41,7 +41,7 @@ public class ActivityController {
 	public Msg releaseActivity(@RequestBody Activity activity){
 		if(activity != null){
 			activityService.releaseActivity(activity);
-			return Msg.success().add("activities", activity);
+			return Msg.success().add(activity);
 		}else{			
 			return Msg.error("活动信息不能为空");
 		}

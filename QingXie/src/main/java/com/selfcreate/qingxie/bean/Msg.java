@@ -1,6 +1,8 @@
 package com.selfcreate.qingxie.bean;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,9 +18,10 @@ public class Msg {
 
 	private String message;
 
-	//用于封装数据
-	private Map<String, Object> data = new HashMap<String, Object>();
-
+//	//用于封装数据
+//	private Map<String, Object> data = new HashMap<String, Object>();
+	private List<Object> data = new ArrayList<Object>();
+	
 	public String getStatus() {
 		return status;
 	}
@@ -35,13 +38,22 @@ public class Msg {
 		this.message = message;
 	}
 
-	public Map<String, Object> getData() {
+//	public Map<String, Object> getData() {
+//		return data;
+//	}
+//
+//	public void setData(Map<String, Object> data) {
+//		this.data = data;
+//	}
+	
+	public List<Object> getData() {
 		return data;
 	}
 
-	public void setData(Map<String, Object> data) {
+	public void setData(List<Object> data) {
 		this.data = data;
 	}
+
 
 	//当处理成功时
 	public static Msg success() {
@@ -76,8 +88,12 @@ public class Msg {
 	}
 
 	//用于添加封装的数据，实现链式编程
-	public Msg add(String key, Object value) {
-		this.getData().put(key, value);
+//	public Msg add(String key, Object value) {
+//		this.getData().put(key, value);
+//		return this;
+//	}
+	public Msg add(Object object){
+		this.getData().add(object);
 		return this;
 	}
 
