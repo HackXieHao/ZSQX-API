@@ -2,6 +2,10 @@ package com.selfcreate.qingxie.bean.user;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class User {
     private Integer id;
 
@@ -12,6 +16,8 @@ public class User {
     private String password;
 
     private String flag;
+
+    private Integer roleId;
 
     private String gender;
 
@@ -27,10 +33,14 @@ public class User {
 
     private String email;
 
+    private String wechat;
+
     private String token;
 
     private String validation;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date lastLoginTime;
 
     public Integer getId() {
@@ -71,6 +81,14 @@ public class User {
 
     public void setFlag(String flag) {
         this.flag = flag == null ? null : flag.trim();
+    }
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
     public String getGender() {
@@ -127,6 +145,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
+    }
+
+    public String getWechat() {
+        return wechat;
+    }
+
+    public void setWechat(String wechat) {
+        this.wechat = wechat == null ? null : wechat.trim();
     }
 
     public String getToken() {

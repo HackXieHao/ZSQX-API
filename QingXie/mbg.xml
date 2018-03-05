@@ -12,7 +12,7 @@
 		</commentGenerator>
 
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql:///zsqx" userId="root" password="XH05250619.">
+			connectionURL="jdbc:mysql://123.207.87.34:3306/qingxie" userId="evans" password="Evans2018!">
 		</jdbcConnection>
 
 		<javaTypeResolver>
@@ -21,7 +21,7 @@
  
 		<!-- 指定javabean的生成位置 -->
 
-		<javaModelGenerator targetPackage="com.selfcreate.qingxie.bean.activity"
+		<javaModelGenerator targetPackage="com.selfcreate.qingxie.bean.user"
 			targetProject=".\src\main\java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
@@ -29,18 +29,21 @@
 
 		<!-- 指定sql映射文件的生成位置 -->
 
-		<sqlMapGenerator targetPackage="mapper.activity" targetProject=".\src\main\resources">
+		<sqlMapGenerator targetPackage="mapper.user" targetProject=".\src\main\resources">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
 		<!-- 指定dao接口的生成位置 mapper接口 -->
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="com.selfcreate.qingxie.dao.activity" targetProject=".\src\main\java">
+			targetPackage="com.selfcreate.qingxie.dao.user" targetProject=".\src\main\java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		
 		<!-- 此处添加新建的表 -->
 		<table tableName="activity" domainObjectName="Activity">
+			<!-- <property name="useActualColumnNames" value="true"></property> -->
+		</table>
+		<table tableName="user" domainObjectName="User">
 			<!-- <property name="useActualColumnNames" value="true"></property> -->
 		</table>
 

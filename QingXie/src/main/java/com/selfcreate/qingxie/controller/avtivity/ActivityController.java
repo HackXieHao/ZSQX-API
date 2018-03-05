@@ -2,6 +2,7 @@ package com.selfcreate.qingxie.controller.avtivity;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,8 @@ public class ActivityController {
 	@Autowired
 	private ActivityService activityService;
 	
+	private static Logger log = Logger.getLogger(ActivityController.class);
+	
 	/**
 	 * 获取所有活动信息
 	 * @return
@@ -28,7 +31,9 @@ public class ActivityController {
 	@RequestMapping(value = "getAllActivities",method = RequestMethod.GET)
 	public Msg getAllActivities(){
 		List<Activity> activities = activityService.getAll();
-		return Msg.success(activities);
+//		log.info("aaa");
+//		log.debug("bbb");
+		return Msg.success().add("activities", activities);
 	}
 	
 	/**
@@ -41,7 +46,7 @@ public class ActivityController {
 	public Msg releaseActivity(@RequestBody Activity activity){
 		if(activity != null){
 			activityService.releaseActivity(activity);
-			return Msg.success(activity);
+			return Msg.success().add("activity", activity);
 		}else{			
 			return Msg.error("活动信息不能为空");
 		}

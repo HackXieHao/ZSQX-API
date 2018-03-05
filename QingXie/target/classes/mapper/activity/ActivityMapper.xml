@@ -5,22 +5,20 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="manager_id" jdbcType="INTEGER" property="managerId" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="status" jdbcType="INTEGER" property="status" />
     <result column="hours" jdbcType="INTEGER" property="hours" />
     <result column="hour_per_time" jdbcType="INTEGER" property="hourPerTime" />
+    <result column="need_volunteers" jdbcType="INTEGER" property="needVolunteers" />
+    <result column="place" jdbcType="VARCHAR" property="place" />
+    <result column="general" jdbcType="VARCHAR" property="general" />
+    <result column="descriptions" jdbcType="VARCHAR" property="descriptions" />
     <result column="reg_time" jdbcType="TIMESTAMP" property="regTime" />
     <result column="reg_end_time" jdbcType="TIMESTAMP" property="regEndTime" />
     <result column="interview_time" jdbcType="TIMESTAMP" property="interviewTime" />
     <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
     <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="general" jdbcType="VARCHAR" property="general" />
-    <result column="need_volunteers" jdbcType="INTEGER" property="needVolunteers" />
-    <result column="place" jdbcType="VARCHAR" property="place" />
-    <result column="descriptions" jdbcType="VARCHAR" property="descriptions" />
-    <result column="activity_detail_picture_id" jdbcType="INTEGER" property="activityDetailPictureId" />
-    <result column="homepage_picture_id" jdbcType="INTEGER" property="homepagePictureId" />
-    <result column="type" jdbcType="VARCHAR" property="type" />
-    <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -81,9 +79,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, manager_id, hours, hour_per_time, reg_time, reg_end_time, interview_time, 
-    start_time, end_time, create_time, general, need_volunteers, place, descriptions, 
-    activity_detail_picture_id, homepage_picture_id, type, status
+    id, name, manager_id, type, status, hours, hour_per_time, need_volunteers, place, 
+    general, descriptions, reg_time, reg_end_time, interview_time, start_time, end_time, 
+    create_time
   </sql>
   <select id="selectByExample" parameterType="com.selfcreate.qingxie.bean.activity.ActivityExample" resultMap="BaseResultMap">
     select
@@ -117,19 +115,17 @@
   </delete>
   <insert id="insert" parameterType="com.selfcreate.qingxie.bean.activity.Activity">
     insert into activity (id, name, manager_id, 
-      hours, hour_per_time, reg_time, 
+      type, status, hours, 
+      hour_per_time, need_volunteers, place, 
+      general, descriptions, reg_time, 
       reg_end_time, interview_time, start_time, 
-      end_time, create_time, general, 
-      need_volunteers, place, descriptions, 
-      activity_detail_picture_id, homepage_picture_id, 
-      type, status)
+      end_time, create_time)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{managerId,jdbcType=INTEGER}, 
-      #{hours,jdbcType=INTEGER}, #{hourPerTime,jdbcType=INTEGER}, #{regTime,jdbcType=TIMESTAMP}, 
+      #{type,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{hours,jdbcType=INTEGER}, 
+      #{hourPerTime,jdbcType=INTEGER}, #{needVolunteers,jdbcType=INTEGER}, #{place,jdbcType=VARCHAR}, 
+      #{general,jdbcType=VARCHAR}, #{descriptions,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP}, 
       #{regEndTime,jdbcType=TIMESTAMP}, #{interviewTime,jdbcType=TIMESTAMP}, #{startTime,jdbcType=TIMESTAMP}, 
-      #{endTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{general,jdbcType=VARCHAR}, 
-      #{needVolunteers,jdbcType=INTEGER}, #{place,jdbcType=VARCHAR}, #{descriptions,jdbcType=VARCHAR}, 
-      #{activityDetailPictureId,jdbcType=INTEGER}, #{homepagePictureId,jdbcType=INTEGER}, 
-      #{type,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
+      #{endTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.selfcreate.qingxie.bean.activity.Activity">
     insert into activity
@@ -143,11 +139,29 @@
       <if test="managerId != null">
         manager_id,
       </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
       <if test="hours != null">
         hours,
       </if>
       <if test="hourPerTime != null">
         hour_per_time,
+      </if>
+      <if test="needVolunteers != null">
+        need_volunteers,
+      </if>
+      <if test="place != null">
+        place,
+      </if>
+      <if test="general != null">
+        general,
+      </if>
+      <if test="descriptions != null">
+        descriptions,
       </if>
       <if test="regTime != null">
         reg_time,
@@ -167,30 +181,6 @@
       <if test="createTime != null">
         create_time,
       </if>
-      <if test="general != null">
-        general,
-      </if>
-      <if test="needVolunteers != null">
-        need_volunteers,
-      </if>
-      <if test="place != null">
-        place,
-      </if>
-      <if test="descriptions != null">
-        descriptions,
-      </if>
-      <if test="activityDetailPictureId != null">
-        activity_detail_picture_id,
-      </if>
-      <if test="homepagePictureId != null">
-        homepage_picture_id,
-      </if>
-      <if test="type != null">
-        type,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -202,11 +192,29 @@
       <if test="managerId != null">
         #{managerId,jdbcType=INTEGER},
       </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
       <if test="hours != null">
         #{hours,jdbcType=INTEGER},
       </if>
       <if test="hourPerTime != null">
         #{hourPerTime,jdbcType=INTEGER},
+      </if>
+      <if test="needVolunteers != null">
+        #{needVolunteers,jdbcType=INTEGER},
+      </if>
+      <if test="place != null">
+        #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="general != null">
+        #{general,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptions != null">
+        #{descriptions,jdbcType=VARCHAR},
       </if>
       <if test="regTime != null">
         #{regTime,jdbcType=TIMESTAMP},
@@ -225,30 +233,6 @@
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="general != null">
-        #{general,jdbcType=VARCHAR},
-      </if>
-      <if test="needVolunteers != null">
-        #{needVolunteers,jdbcType=INTEGER},
-      </if>
-      <if test="place != null">
-        #{place,jdbcType=VARCHAR},
-      </if>
-      <if test="descriptions != null">
-        #{descriptions,jdbcType=VARCHAR},
-      </if>
-      <if test="activityDetailPictureId != null">
-        #{activityDetailPictureId,jdbcType=INTEGER},
-      </if>
-      <if test="homepagePictureId != null">
-        #{homepagePictureId,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -270,11 +254,29 @@
       <if test="record.managerId != null">
         manager_id = #{record.managerId,jdbcType=INTEGER},
       </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
       <if test="record.hours != null">
         hours = #{record.hours,jdbcType=INTEGER},
       </if>
       <if test="record.hourPerTime != null">
         hour_per_time = #{record.hourPerTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.needVolunteers != null">
+        need_volunteers = #{record.needVolunteers,jdbcType=INTEGER},
+      </if>
+      <if test="record.place != null">
+        place = #{record.place,jdbcType=VARCHAR},
+      </if>
+      <if test="record.general != null">
+        general = #{record.general,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descriptions != null">
+        descriptions = #{record.descriptions,jdbcType=VARCHAR},
       </if>
       <if test="record.regTime != null">
         reg_time = #{record.regTime,jdbcType=TIMESTAMP},
@@ -294,30 +296,6 @@
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.general != null">
-        general = #{record.general,jdbcType=VARCHAR},
-      </if>
-      <if test="record.needVolunteers != null">
-        need_volunteers = #{record.needVolunteers,jdbcType=INTEGER},
-      </if>
-      <if test="record.place != null">
-        place = #{record.place,jdbcType=VARCHAR},
-      </if>
-      <if test="record.descriptions != null">
-        descriptions = #{record.descriptions,jdbcType=VARCHAR},
-      </if>
-      <if test="record.activityDetailPictureId != null">
-        activity_detail_picture_id = #{record.activityDetailPictureId,jdbcType=INTEGER},
-      </if>
-      <if test="record.homepagePictureId != null">
-        homepage_picture_id = #{record.homepagePictureId,jdbcType=INTEGER},
-      </if>
-      <if test="record.type != null">
-        type = #{record.type,jdbcType=VARCHAR},
-      </if>
-      <if test="record.status != null">
-        status = #{record.status,jdbcType=INTEGER},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -328,22 +306,20 @@
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       manager_id = #{record.managerId,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
       hours = #{record.hours,jdbcType=INTEGER},
       hour_per_time = #{record.hourPerTime,jdbcType=INTEGER},
+      need_volunteers = #{record.needVolunteers,jdbcType=INTEGER},
+      place = #{record.place,jdbcType=VARCHAR},
+      general = #{record.general,jdbcType=VARCHAR},
+      descriptions = #{record.descriptions,jdbcType=VARCHAR},
       reg_time = #{record.regTime,jdbcType=TIMESTAMP},
       reg_end_time = #{record.regEndTime,jdbcType=TIMESTAMP},
       interview_time = #{record.interviewTime,jdbcType=TIMESTAMP},
       start_time = #{record.startTime,jdbcType=TIMESTAMP},
       end_time = #{record.endTime,jdbcType=TIMESTAMP},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      general = #{record.general,jdbcType=VARCHAR},
-      need_volunteers = #{record.needVolunteers,jdbcType=INTEGER},
-      place = #{record.place,jdbcType=VARCHAR},
-      descriptions = #{record.descriptions,jdbcType=VARCHAR},
-      activity_detail_picture_id = #{record.activityDetailPictureId,jdbcType=INTEGER},
-      homepage_picture_id = #{record.homepagePictureId,jdbcType=INTEGER},
-      type = #{record.type,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER}
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -357,11 +333,29 @@
       <if test="managerId != null">
         manager_id = #{managerId,jdbcType=INTEGER},
       </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
       <if test="hours != null">
         hours = #{hours,jdbcType=INTEGER},
       </if>
       <if test="hourPerTime != null">
         hour_per_time = #{hourPerTime,jdbcType=INTEGER},
+      </if>
+      <if test="needVolunteers != null">
+        need_volunteers = #{needVolunteers,jdbcType=INTEGER},
+      </if>
+      <if test="place != null">
+        place = #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="general != null">
+        general = #{general,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptions != null">
+        descriptions = #{descriptions,jdbcType=VARCHAR},
       </if>
       <if test="regTime != null">
         reg_time = #{regTime,jdbcType=TIMESTAMP},
@@ -381,30 +375,6 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="general != null">
-        general = #{general,jdbcType=VARCHAR},
-      </if>
-      <if test="needVolunteers != null">
-        need_volunteers = #{needVolunteers,jdbcType=INTEGER},
-      </if>
-      <if test="place != null">
-        place = #{place,jdbcType=VARCHAR},
-      </if>
-      <if test="descriptions != null">
-        descriptions = #{descriptions,jdbcType=VARCHAR},
-      </if>
-      <if test="activityDetailPictureId != null">
-        activity_detail_picture_id = #{activityDetailPictureId,jdbcType=INTEGER},
-      </if>
-      <if test="homepagePictureId != null">
-        homepage_picture_id = #{homepagePictureId,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        type = #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
-      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -412,22 +382,20 @@
     update activity
     set name = #{name,jdbcType=VARCHAR},
       manager_id = #{managerId,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
       hours = #{hours,jdbcType=INTEGER},
       hour_per_time = #{hourPerTime,jdbcType=INTEGER},
+      need_volunteers = #{needVolunteers,jdbcType=INTEGER},
+      place = #{place,jdbcType=VARCHAR},
+      general = #{general,jdbcType=VARCHAR},
+      descriptions = #{descriptions,jdbcType=VARCHAR},
       reg_time = #{regTime,jdbcType=TIMESTAMP},
       reg_end_time = #{regEndTime,jdbcType=TIMESTAMP},
       interview_time = #{interviewTime,jdbcType=TIMESTAMP},
       start_time = #{startTime,jdbcType=TIMESTAMP},
       end_time = #{endTime,jdbcType=TIMESTAMP},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      general = #{general,jdbcType=VARCHAR},
-      need_volunteers = #{needVolunteers,jdbcType=INTEGER},
-      place = #{place,jdbcType=VARCHAR},
-      descriptions = #{descriptions,jdbcType=VARCHAR},
-      activity_detail_picture_id = #{activityDetailPictureId,jdbcType=INTEGER},
-      homepage_picture_id = #{homepagePictureId,jdbcType=INTEGER},
-      type = #{type,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER}
+      create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

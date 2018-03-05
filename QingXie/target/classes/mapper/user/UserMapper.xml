@@ -7,6 +7,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="flag" jdbcType="VARCHAR" property="flag" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
     <result column="gender" jdbcType="VARCHAR" property="gender" />
     <result column="class_id" jdbcType="INTEGER" property="classId" />
     <result column="hours" jdbcType="INTEGER" property="hours" />
@@ -14,6 +15,7 @@
     <result column="telephone" jdbcType="VARCHAR" property="telephone" />
     <result column="qq" jdbcType="VARCHAR" property="qq" />
     <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
     <result column="token" jdbcType="VARCHAR" property="token" />
     <result column="validation" jdbcType="VARCHAR" property="validation" />
     <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
@@ -77,8 +79,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, student_id, name, password, flag, gender, class_id, hours, icon_id, telephone, 
-    qq, email, token, validation, last_login_time
+    id, student_id, name, password, flag, role_id, gender, class_id, hours, icon_id, 
+    telephone, qq, email, wechat, token, validation, last_login_time
   </sql>
   <select id="selectByExample" parameterType="com.selfcreate.qingxie.bean.user.UserExample" resultMap="BaseResultMap">
     select
@@ -112,17 +114,17 @@
   </delete>
   <insert id="insert" parameterType="com.selfcreate.qingxie.bean.user.User">
     insert into user (id, student_id, name, 
-      password, flag, gender, 
-      class_id, hours, icon_id, 
-      telephone, qq, email, 
-      token, validation, last_login_time
-      )
+      password, flag, role_id, 
+      gender, class_id, hours, 
+      icon_id, telephone, qq, 
+      email, wechat, token, 
+      validation, last_login_time)
     values (#{id,jdbcType=INTEGER}, #{studentId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{flag,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
-      #{classId,jdbcType=INTEGER}, #{hours,jdbcType=INTEGER}, #{iconId,jdbcType=INTEGER}, 
-      #{telephone,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{token,jdbcType=VARCHAR}, #{validation,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}
-      )
+      #{password,jdbcType=VARCHAR}, #{flag,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}, 
+      #{gender,jdbcType=VARCHAR}, #{classId,jdbcType=INTEGER}, #{hours,jdbcType=INTEGER}, 
+      #{iconId,jdbcType=INTEGER}, #{telephone,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, 
+      #{validation,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.selfcreate.qingxie.bean.user.User">
     insert into user
@@ -141,6 +143,9 @@
       </if>
       <if test="flag != null">
         flag,
+      </if>
+      <if test="roleId != null">
+        role_id,
       </if>
       <if test="gender != null">
         gender,
@@ -162,6 +167,9 @@
       </if>
       <if test="email != null">
         email,
+      </if>
+      <if test="wechat != null">
+        wechat,
       </if>
       <if test="token != null">
         token,
@@ -189,6 +197,9 @@
       <if test="flag != null">
         #{flag,jdbcType=VARCHAR},
       </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
       <if test="gender != null">
         #{gender,jdbcType=VARCHAR},
       </if>
@@ -209,6 +220,9 @@
       </if>
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        #{wechat,jdbcType=VARCHAR},
       </if>
       <if test="token != null">
         #{token,jdbcType=VARCHAR},
@@ -245,6 +259,9 @@
       <if test="record.flag != null">
         flag = #{record.flag,jdbcType=VARCHAR},
       </if>
+      <if test="record.roleId != null">
+        role_id = #{record.roleId,jdbcType=INTEGER},
+      </if>
       <if test="record.gender != null">
         gender = #{record.gender,jdbcType=VARCHAR},
       </if>
@@ -265,6 +282,9 @@
       </if>
       <if test="record.email != null">
         email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wechat != null">
+        wechat = #{record.wechat,jdbcType=VARCHAR},
       </if>
       <if test="record.token != null">
         token = #{record.token,jdbcType=VARCHAR},
@@ -287,6 +307,7 @@
       name = #{record.name,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       flag = #{record.flag,jdbcType=VARCHAR},
+      role_id = #{record.roleId,jdbcType=INTEGER},
       gender = #{record.gender,jdbcType=VARCHAR},
       class_id = #{record.classId,jdbcType=INTEGER},
       hours = #{record.hours,jdbcType=INTEGER},
@@ -294,6 +315,7 @@
       telephone = #{record.telephone,jdbcType=VARCHAR},
       qq = #{record.qq,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
+      wechat = #{record.wechat,jdbcType=VARCHAR},
       token = #{record.token,jdbcType=VARCHAR},
       validation = #{record.validation,jdbcType=VARCHAR},
       last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP}
@@ -316,6 +338,9 @@
       <if test="flag != null">
         flag = #{flag,jdbcType=VARCHAR},
       </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
       <if test="gender != null">
         gender = #{gender,jdbcType=VARCHAR},
       </if>
@@ -337,6 +362,9 @@
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
+      <if test="wechat != null">
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
       <if test="token != null">
         token = #{token,jdbcType=VARCHAR},
       </if>
@@ -355,6 +383,7 @@
       name = #{name,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       flag = #{flag,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=INTEGER},
       gender = #{gender,jdbcType=VARCHAR},
       class_id = #{classId,jdbcType=INTEGER},
       hours = #{hours,jdbcType=INTEGER},
@@ -362,6 +391,7 @@
       telephone = #{telephone,jdbcType=VARCHAR},
       qq = #{qq,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
       token = #{token,jdbcType=VARCHAR},
       validation = #{validation,jdbcType=VARCHAR},
       last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP}

@@ -1,8 +1,6 @@
 package com.selfcreate.qingxie.bean;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,11 +16,9 @@ public class Msg {
 
 	private String message;
 
-//	//用于封装数据
-//	private Map<String, Object> data = new HashMap<String, Object>();
-//	private List<Object> data = new ArrayList<Object>();
-	private Object data;
-	
+	//用于封装数据
+	private Map<String, Object> data = new HashMap<String, Object>();
+
 	public String getStatus() {
 		return status;
 	}
@@ -39,75 +35,50 @@ public class Msg {
 		this.message = message;
 	}
 
-//	public Map<String, Object> getData() {
-//		return data;
-//	}
-//
-//	public void setData(Map<String, Object> data) {
-//		this.data = data;
-//	}
-	
-//	public List<Object> getData() {
-//		return data;
-//	}
-//
-//	public void setData(List<Object> data) {
-//		this.data = data;
-//	}
-
-	public Object getData() {
+	public Map<String, Object> getData() {
 		return data;
 	}
 
-	public void setData(Object data) {
+	public void setData(Map<String, Object> data) {
 		this.data = data;
 	}
 
-
 	//当处理成功时
-	public static Msg success(Object object) {
+	public static Msg success() {
 		Msg result = new Msg();
 		result.setStatus("success");
 		result.setMessage("处理成功");
-		result.setData(object);
 		return result;
 	}
 
 	//当处理成功时，可附带message
-	public static Msg success(String message,Object object) {
+	public static Msg success(String message) {
 		Msg result = new Msg();
 		result.setStatus("success");
 		result.setMessage(message);
-		result.setData(object);
 		return result;
 	}
 
 	//当处理失败时
-	public static Msg error(Object object) {
+	public static Msg error() {
 		Msg result = new Msg();
 		result.setStatus("error");
 		result.setMessage("处理失败");
-		result.setData(object);
 		return result;
 	}
 
 	//当处理失败时，可附带message
-	public static Msg error(String message,Object object) {
+	public static Msg error(String message) {
 		Msg result = new Msg();
 		result.setStatus("error");
 		result.setMessage(message);
-		result.setData(object);
 		return result;
 	}
 
 	//用于添加封装的数据，实现链式编程
-//	public Msg add(String key, Object value) {
-//		this.getData().put(key, value);
-//		return this;
-//	}
-//	public Msg add(Object object){
-//		this.getData().add(object);
-//		return this;
-//	}
+	public Msg add(String key, Object value) {
+		this.getData().put(key, value);
+		return this;
+	}
 
 }
