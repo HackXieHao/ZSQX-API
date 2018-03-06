@@ -12,18 +12,24 @@ import com.selfcreate.qingxie.bean.Msg;
 import com.selfcreate.qingxie.bean.user.User;
 import com.selfcreate.qingxie.service.user.UserService;
 
+import javax.enterprise.inject.Model;
+
 @RequestMapping(value = "/user/")
 @Controller
 public class UserController {
 
-	@Autowired
-	private UserService userService;
-	
-	@ResponseBody
-	@RequestMapping(value = "getAll", method = RequestMethod.GET)
-	public Msg getAll(){
-		List<User> users = userService.getAll();
-		return Msg.success("获取成功").add("users", users);
-	}
-	
+    @Autowired
+    private UserService userService;
+
+    @ResponseBody
+    @RequestMapping(value = "getAll", method = RequestMethod.GET)
+    public Msg getAll() {
+        List<User> users = userService.getAll();
+        return Msg.success("获取成功").add("users", users);
+    }
+
+    @RequestMapping("log")
+    public String showLog(Model model) {
+        return "log";
+    }
 }

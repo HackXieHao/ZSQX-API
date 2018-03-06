@@ -23,7 +23,7 @@ public class User {
 
     private Integer classId;
 
-    private Integer hours;
+    private Double hours;
 
     private Integer iconId;
 
@@ -107,11 +107,11 @@ public class User {
         this.classId = classId;
     }
 
-    public Integer getHours() {
+    public Double getHours() {
         return hours;
     }
 
-    public void setHours(Integer hours) {
+    public void setHours(Double hours) {
         this.hours = hours;
     }
 
