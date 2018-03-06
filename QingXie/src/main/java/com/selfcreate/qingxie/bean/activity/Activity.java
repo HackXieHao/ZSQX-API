@@ -17,9 +17,9 @@ public class Activity {
 
 	private Integer status;
 
-	private Integer hours;
+	private Double hours;
 
-	private Integer hourPerTime;
+	private Double hourPerTime;
 
 	private Integer needVolunteers;
 
@@ -29,28 +29,16 @@ public class Activity {
 
 	private String descriptions;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date regTime;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date regEndTime;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date interviewTime;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date startTime;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date endTime;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date createTime;
 
 	public Integer getId() {
@@ -93,19 +81,19 @@ public class Activity {
 		this.status = status;
 	}
 
-	public Integer getHours() {
+	public Double getHours() {
 		return hours;
 	}
 
-	public void setHours(Integer hours) {
+	public void setHours(Double hours) {
 		this.hours = hours;
 	}
 
-	public Integer getHourPerTime() {
+	public Double getHourPerTime() {
 		return hourPerTime;
 	}
 
-	public void setHourPerTime(Integer hourPerTime) {
+	public void setHourPerTime(Double hourPerTime) {
 		this.hourPerTime = hourPerTime;
 	}
 

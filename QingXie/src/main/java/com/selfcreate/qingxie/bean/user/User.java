@@ -23,7 +23,7 @@ public class User {
 
     private Integer classId;
 
-    private Integer hours;
+    private Double hours;
 
     private Integer iconId;
 
@@ -39,8 +39,6 @@ public class User {
 
     private String validation;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date lastLoginTime;
 
     public Integer getId() {
@@ -107,11 +105,11 @@ public class User {
         this.classId = classId;
     }
 
-    public Integer getHours() {
+    public Double getHours() {
         return hours;
     }
 
-    public void setHours(Integer hours) {
+    public void setHours(Double hours) {
         this.hours = hours;
     }
 
