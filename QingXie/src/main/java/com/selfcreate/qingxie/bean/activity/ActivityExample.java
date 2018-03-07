@@ -435,52 +435,52 @@ public class ActivityExample {
             return (Criteria) this;
         }
 
-        public Criteria andHoursEqualTo(Integer value) {
+        public Criteria andHoursEqualTo(Double value) {
             addCriterion("hours =", value, "hours");
             return (Criteria) this;
         }
 
-        public Criteria andHoursNotEqualTo(Integer value) {
+        public Criteria andHoursNotEqualTo(Double value) {
             addCriterion("hours <>", value, "hours");
             return (Criteria) this;
         }
 
-        public Criteria andHoursGreaterThan(Integer value) {
+        public Criteria andHoursGreaterThan(Double value) {
             addCriterion("hours >", value, "hours");
             return (Criteria) this;
         }
 
-        public Criteria andHoursGreaterThanOrEqualTo(Integer value) {
+        public Criteria andHoursGreaterThanOrEqualTo(Double value) {
             addCriterion("hours >=", value, "hours");
             return (Criteria) this;
         }
 
-        public Criteria andHoursLessThan(Integer value) {
+        public Criteria andHoursLessThan(Double value) {
             addCriterion("hours <", value, "hours");
             return (Criteria) this;
         }
 
-        public Criteria andHoursLessThanOrEqualTo(Integer value) {
+        public Criteria andHoursLessThanOrEqualTo(Double value) {
             addCriterion("hours <=", value, "hours");
             return (Criteria) this;
         }
 
-        public Criteria andHoursIn(List<Integer> values) {
+        public Criteria andHoursIn(List<Double> values) {
             addCriterion("hours in", values, "hours");
             return (Criteria) this;
         }
 
-        public Criteria andHoursNotIn(List<Integer> values) {
+        public Criteria andHoursNotIn(List<Double> values) {
             addCriterion("hours not in", values, "hours");
             return (Criteria) this;
         }
 
-        public Criteria andHoursBetween(Integer value1, Integer value2) {
+        public Criteria andHoursBetween(Double value1, Double value2) {
             addCriterion("hours between", value1, value2, "hours");
             return (Criteria) this;
         }
 
-        public Criteria andHoursNotBetween(Integer value1, Integer value2) {
+        public Criteria andHoursNotBetween(Double value1, Double value2) {
             addCriterion("hours not between", value1, value2, "hours");
             return (Criteria) this;
         }
@@ -495,52 +495,52 @@ public class ActivityExample {
             return (Criteria) this;
         }
 
-        public Criteria andHourPerTimeEqualTo(Integer value) {
+        public Criteria andHourPerTimeEqualTo(Double value) {
             addCriterion("hour_per_time =", value, "hourPerTime");
             return (Criteria) this;
         }
 
-        public Criteria andHourPerTimeNotEqualTo(Integer value) {
+        public Criteria andHourPerTimeNotEqualTo(Double value) {
             addCriterion("hour_per_time <>", value, "hourPerTime");
             return (Criteria) this;
         }
 
-        public Criteria andHourPerTimeGreaterThan(Integer value) {
+        public Criteria andHourPerTimeGreaterThan(Double value) {
             addCriterion("hour_per_time >", value, "hourPerTime");
             return (Criteria) this;
         }
 
-        public Criteria andHourPerTimeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andHourPerTimeGreaterThanOrEqualTo(Double value) {
             addCriterion("hour_per_time >=", value, "hourPerTime");
             return (Criteria) this;
         }
 
-        public Criteria andHourPerTimeLessThan(Integer value) {
+        public Criteria andHourPerTimeLessThan(Double value) {
             addCriterion("hour_per_time <", value, "hourPerTime");
             return (Criteria) this;
         }
 
-        public Criteria andHourPerTimeLessThanOrEqualTo(Integer value) {
+        public Criteria andHourPerTimeLessThanOrEqualTo(Double value) {
             addCriterion("hour_per_time <=", value, "hourPerTime");
             return (Criteria) this;
         }
 
-        public Criteria andHourPerTimeIn(List<Integer> values) {
+        public Criteria andHourPerTimeIn(List<Double> values) {
             addCriterion("hour_per_time in", values, "hourPerTime");
             return (Criteria) this;
         }
 
-        public Criteria andHourPerTimeNotIn(List<Integer> values) {
+        public Criteria andHourPerTimeNotIn(List<Double> values) {
             addCriterion("hour_per_time not in", values, "hourPerTime");
             return (Criteria) this;
         }
 
-        public Criteria andHourPerTimeBetween(Integer value1, Integer value2) {
+        public Criteria andHourPerTimeBetween(Double value1, Double value2) {
             addCriterion("hour_per_time between", value1, value2, "hourPerTime");
             return (Criteria) this;
         }
 
-        public Criteria andHourPerTimeNotBetween(Integer value1, Integer value2) {
+        public Criteria andHourPerTimeNotBetween(Double value1, Double value2) {
             addCriterion("hour_per_time not between", value1, value2, "hourPerTime");
             return (Criteria) this;
         }

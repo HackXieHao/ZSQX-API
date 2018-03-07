@@ -7,8 +7,8 @@
     <result column="manager_id" jdbcType="INTEGER" property="managerId" />
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="hours" jdbcType="INTEGER" property="hours" />
-    <result column="hour_per_time" jdbcType="INTEGER" property="hourPerTime" />
+    <result column="hours" jdbcType="DOUBLE" property="hours" />
+    <result column="hour_per_time" jdbcType="DOUBLE" property="hourPerTime" />
     <result column="need_volunteers" jdbcType="INTEGER" property="needVolunteers" />
     <result column="place" jdbcType="VARCHAR" property="place" />
     <result column="general" jdbcType="VARCHAR" property="general" />
@@ -123,8 +123,8 @@
       end_time, create_time, sponser
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{managerId,jdbcType=INTEGER}, 
-      #{type,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{hours,jdbcType=INTEGER}, 
-      #{hourPerTime,jdbcType=INTEGER}, #{needVolunteers,jdbcType=INTEGER}, #{place,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{hours,jdbcType=DOUBLE}, 
+      #{hourPerTime,jdbcType=DOUBLE}, #{needVolunteers,jdbcType=INTEGER}, #{place,jdbcType=VARCHAR}, 
       #{general,jdbcType=VARCHAR}, #{descriptions,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP}, 
       #{regEndTime,jdbcType=TIMESTAMP}, #{interviewTime,jdbcType=TIMESTAMP}, #{startTime,jdbcType=TIMESTAMP}, 
       #{endTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{sponser,jdbcType=VARCHAR}
@@ -205,10 +205,10 @@
         #{status,jdbcType=INTEGER},
       </if>
       <if test="hours != null">
-        #{hours,jdbcType=INTEGER},
+        #{hours,jdbcType=DOUBLE},
       </if>
       <if test="hourPerTime != null">
-        #{hourPerTime,jdbcType=INTEGER},
+        #{hourPerTime,jdbcType=DOUBLE},
       </if>
       <if test="needVolunteers != null">
         #{needVolunteers,jdbcType=INTEGER},
@@ -270,10 +270,10 @@
         status = #{record.status,jdbcType=INTEGER},
       </if>
       <if test="record.hours != null">
-        hours = #{record.hours,jdbcType=INTEGER},
+        hours = #{record.hours,jdbcType=DOUBLE},
       </if>
       <if test="record.hourPerTime != null">
-        hour_per_time = #{record.hourPerTime,jdbcType=INTEGER},
+        hour_per_time = #{record.hourPerTime,jdbcType=DOUBLE},
       </if>
       <if test="record.needVolunteers != null">
         need_volunteers = #{record.needVolunteers,jdbcType=INTEGER},
@@ -320,8 +320,8 @@
       manager_id = #{record.managerId,jdbcType=INTEGER},
       type = #{record.type,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
-      hours = #{record.hours,jdbcType=INTEGER},
-      hour_per_time = #{record.hourPerTime,jdbcType=INTEGER},
+      hours = #{record.hours,jdbcType=DOUBLE},
+      hour_per_time = #{record.hourPerTime,jdbcType=DOUBLE},
       need_volunteers = #{record.needVolunteers,jdbcType=INTEGER},
       place = #{record.place,jdbcType=VARCHAR},
       general = #{record.general,jdbcType=VARCHAR},
@@ -353,10 +353,10 @@
         status = #{status,jdbcType=INTEGER},
       </if>
       <if test="hours != null">
-        hours = #{hours,jdbcType=INTEGER},
+        hours = #{hours,jdbcType=DOUBLE},
       </if>
       <if test="hourPerTime != null">
-        hour_per_time = #{hourPerTime,jdbcType=INTEGER},
+        hour_per_time = #{hourPerTime,jdbcType=DOUBLE},
       </if>
       <if test="needVolunteers != null">
         need_volunteers = #{needVolunteers,jdbcType=INTEGER},
@@ -400,8 +400,8 @@
       manager_id = #{managerId,jdbcType=INTEGER},
       type = #{type,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
-      hours = #{hours,jdbcType=INTEGER},
-      hour_per_time = #{hourPerTime,jdbcType=INTEGER},
+      hours = #{hours,jdbcType=DOUBLE},
+      hour_per_time = #{hourPerTime,jdbcType=DOUBLE},
       need_volunteers = #{needVolunteers,jdbcType=INTEGER},
       place = #{place,jdbcType=VARCHAR},
       general = #{general,jdbcType=VARCHAR},
