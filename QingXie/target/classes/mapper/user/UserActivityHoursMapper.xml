@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.selfcreate.qingxie.dao.user.UserActivityHoursMapper">
+  <resultMap id="BaseResultMap" type="com.selfcreate.qingxie.bean.user.UserActivityHours">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <id column="activity_id" jdbcType="INTEGER" property="activityId" />
+    <result column="voluntary_hours" jdbcType="INTEGER" property="voluntaryHours" />
+    <result column="is_confirm" jdbcType="INTEGER" property="isConfirm" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    user_id, activity_id, voluntary_hours, is_confirm, create_time
+  </sql>
+  <select id="selectByExample" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHoursExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_activity_hours
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHoursKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_activity_hours
+    where user_id = #{userId,jdbcType=INTEGER}
+      and activity_id = #{activityId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHoursKey">
+    delete from user_activity_hours
+    where user_id = #{userId,jdbcType=INTEGER}
+      and activity_id = #{activityId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHoursExample">
+    delete from user_activity_hours
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHours">
+    insert into user_activity_hours (user_id, activity_id, voluntary_hours, 
+      is_confirm, create_time)
+    values (#{userId,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER}, #{voluntaryHours,jdbcType=INTEGER}, 
+      #{isConfirm,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHours">
+    insert into user_activity_hours
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
+      <if test="voluntaryHours != null">
+        voluntary_hours,
+      </if>
+      <if test="isConfirm != null">
+        is_confirm,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="voluntaryHours != null">
+        #{voluntaryHours,jdbcType=INTEGER},
+      </if>
+      <if test="isConfirm != null">
+        #{isConfirm,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHoursExample" resultType="java.lang.Long">
+    select count(*) from user_activity_hours
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update user_activity_hours
+    <set>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityId != null">
+        activity_id = #{record.activityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.voluntaryHours != null">
+        voluntary_hours = #{record.voluntaryHours,jdbcType=INTEGER},
+      </if>
+      <if test="record.isConfirm != null">
+        is_confirm = #{record.isConfirm,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update user_activity_hours
+    set user_id = #{record.userId,jdbcType=INTEGER},
+      activity_id = #{record.activityId,jdbcType=INTEGER},
+      voluntary_hours = #{record.voluntaryHours,jdbcType=INTEGER},
+      is_confirm = #{record.isConfirm,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHours">
+    update user_activity_hours
+    <set>
+      <if test="voluntaryHours != null">
+        voluntary_hours = #{voluntaryHours,jdbcType=INTEGER},
+      </if>
+      <if test="isConfirm != null">
+        is_confirm = #{isConfirm,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+      and activity_id = #{activityId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHours">
+    update user_activity_hours
+    set voluntary_hours = #{voluntaryHours,jdbcType=INTEGER},
+      is_confirm = #{isConfirm,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where user_id = #{userId,jdbcType=INTEGER}
+      and activity_id = #{activityId,jdbcType=INTEGER}
+  </update>
+</mapper>

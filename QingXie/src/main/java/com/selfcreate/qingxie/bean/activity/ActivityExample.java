@@ -1174,6 +1174,76 @@ public class ActivityExample {
             addCriterion("create_time not between", value1, value2, "createTime");
             return (Criteria) this;
         }
+
+        public Criteria andSponserIsNull() {
+            addCriterion("sponser is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponserIsNotNull() {
+            addCriterion("sponser is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponserEqualTo(String value) {
+            addCriterion("sponser =", value, "sponser");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponserNotEqualTo(String value) {
+            addCriterion("sponser <>", value, "sponser");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponserGreaterThan(String value) {
+            addCriterion("sponser >", value, "sponser");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponserGreaterThanOrEqualTo(String value) {
+            addCriterion("sponser >=", value, "sponser");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponserLessThan(String value) {
+            addCriterion("sponser <", value, "sponser");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponserLessThanOrEqualTo(String value) {
+            addCriterion("sponser <=", value, "sponser");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponserLike(String value) {
+            addCriterion("sponser like", value, "sponser");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponserNotLike(String value) {
+            addCriterion("sponser not like", value, "sponser");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponserIn(List<String> values) {
+            addCriterion("sponser in", values, "sponser");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponserNotIn(List<String> values) {
+            addCriterion("sponser not in", values, "sponser");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponserBetween(String value1, String value2) {
+            addCriterion("sponser between", value1, value2, "sponser");
+            return (Criteria) this;
+        }
+
+        public Criteria andSponserNotBetween(String value1, String value2) {
+            addCriterion("sponser not between", value1, value2, "sponser");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

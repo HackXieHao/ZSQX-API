@@ -19,6 +19,7 @@
     <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
     <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="sponser" jdbcType="VARCHAR" property="sponser" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -81,7 +82,7 @@
   <sql id="Base_Column_List">
     id, name, manager_id, type, status, hours, hour_per_time, need_volunteers, place, 
     general, descriptions, reg_time, reg_end_time, interview_time, start_time, end_time, 
-    create_time
+    create_time, sponser
   </sql>
   <select id="selectByExample" parameterType="com.selfcreate.qingxie.bean.activity.ActivityExample" resultMap="BaseResultMap">
     select
@@ -119,13 +120,15 @@
       hour_per_time, need_volunteers, place, 
       general, descriptions, reg_time, 
       reg_end_time, interview_time, start_time, 
-      end_time, create_time)
+      end_time, create_time, sponser
+      )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{managerId,jdbcType=INTEGER}, 
       #{type,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{hours,jdbcType=INTEGER}, 
       #{hourPerTime,jdbcType=INTEGER}, #{needVolunteers,jdbcType=INTEGER}, #{place,jdbcType=VARCHAR}, 
       #{general,jdbcType=VARCHAR}, #{descriptions,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP}, 
       #{regEndTime,jdbcType=TIMESTAMP}, #{interviewTime,jdbcType=TIMESTAMP}, #{startTime,jdbcType=TIMESTAMP}, 
-      #{endTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP})
+      #{endTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{sponser,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.selfcreate.qingxie.bean.activity.Activity">
     insert into activity
@@ -181,6 +184,9 @@
       <if test="createTime != null">
         create_time,
       </if>
+      <if test="sponser != null">
+        sponser,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -233,6 +239,9 @@
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sponser != null">
+        #{sponser,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -296,6 +305,9 @@
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.sponser != null">
+        sponser = #{record.sponser,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -319,7 +331,8 @@
       interview_time = #{record.interviewTime,jdbcType=TIMESTAMP},
       start_time = #{record.startTime,jdbcType=TIMESTAMP},
       end_time = #{record.endTime,jdbcType=TIMESTAMP},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      sponser = #{record.sponser,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -375,6 +388,9 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="sponser != null">
+        sponser = #{sponser,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -395,7 +411,8 @@
       interview_time = #{interviewTime,jdbcType=TIMESTAMP},
       start_time = #{startTime,jdbcType=TIMESTAMP},
       end_time = #{endTime,jdbcType=TIMESTAMP},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      sponser = #{sponser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

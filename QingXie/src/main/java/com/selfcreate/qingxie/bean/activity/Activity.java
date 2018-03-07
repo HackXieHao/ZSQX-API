@@ -2,190 +2,184 @@ package com.selfcreate.qingxie.bean.activity;
 
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 public class Activity {
-	private Integer id;
+    private Integer id;
 
-	private String name;
+    private String name;
 
-	private Integer managerId;
+    private Integer managerId;
 
-	private String type;
+    private String type;
 
-	private Integer status;
+    private Integer status;
 
-	private Integer hours;
+    private Integer hours;
 
-	private Integer hourPerTime;
+    private Integer hourPerTime;
 
-	private Integer needVolunteers;
+    private Integer needVolunteers;
 
-	private String place;
+    private String place;
 
-	private String general;
+    private String general;
 
-	private String descriptions;
+    private String descriptions;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private Date regTime;
+    private Date regTime;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private Date regEndTime;
+    private Date regEndTime;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private Date interviewTime;
+    private Date interviewTime;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private Date startTime;
+    private Date startTime;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private Date endTime;
+    private Date endTime;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private Date createTime;
+    private Date createTime;
 
-	public Integer getId() {
-		return id;
-	}
+    private String sponser;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name == null ? null : name.trim();
-	}
+    public String getName() {
+        return name;
+    }
 
-	public Integer getManagerId() {
-		return managerId;
-	}
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
 
-	public void setManagerId(Integer managerId) {
-		this.managerId = managerId;
-	}
+    public Integer getManagerId() {
+        return managerId;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public void setManagerId(Integer managerId) {
+        this.managerId = managerId;
+    }
 
-	public void setType(String type) {
-		this.type = type == null ? null : type.trim();
-	}
+    public String getType() {
+        return type;
+    }
 
-	public Integer getStatus() {
-		return status;
-	}
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
+    }
 
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
+    public Integer getStatus() {
+        return status;
+    }
 
-	public Integer getHours() {
-		return hours;
-	}
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
-	public void setHours(Integer hours) {
-		this.hours = hours;
-	}
+    public Integer getHours() {
+        return hours;
+    }
 
-	public Integer getHourPerTime() {
-		return hourPerTime;
-	}
+    public void setHours(Integer hours) {
+        this.hours = hours;
+    }
 
-	public void setHourPerTime(Integer hourPerTime) {
-		this.hourPerTime = hourPerTime;
-	}
+    public Integer getHourPerTime() {
+        return hourPerTime;
+    }
 
-	public Integer getNeedVolunteers() {
-		return needVolunteers;
-	}
+    public void setHourPerTime(Integer hourPerTime) {
+        this.hourPerTime = hourPerTime;
+    }
 
-	public void setNeedVolunteers(Integer needVolunteers) {
-		this.needVolunteers = needVolunteers;
-	}
+    public Integer getNeedVolunteers() {
+        return needVolunteers;
+    }
 
-	public String getPlace() {
-		return place;
-	}
+    public void setNeedVolunteers(Integer needVolunteers) {
+        this.needVolunteers = needVolunteers;
+    }
 
-	public void setPlace(String place) {
-		this.place = place == null ? null : place.trim();
-	}
+    public String getPlace() {
+        return place;
+    }
 
-	public String getGeneral() {
-		return general;
-	}
+    public void setPlace(String place) {
+        this.place = place == null ? null : place.trim();
+    }
 
-	public void setGeneral(String general) {
-		this.general = general == null ? null : general.trim();
-	}
+    public String getGeneral() {
+        return general;
+    }
 
-	public String getDescriptions() {
-		return descriptions;
-	}
+    public void setGeneral(String general) {
+        this.general = general == null ? null : general.trim();
+    }
 
-	public void setDescriptions(String descriptions) {
-		this.descriptions = descriptions == null ? null : descriptions.trim();
-	}
+    public String getDescriptions() {
+        return descriptions;
+    }
 
-	public Date getRegTime() {
-		return regTime;
-	}
+    public void setDescriptions(String descriptions) {
+        this.descriptions = descriptions == null ? null : descriptions.trim();
+    }
 
-	public void setRegTime(Date regTime) {
-		this.regTime = regTime;
-	}
+    public Date getRegTime() {
+        return regTime;
+    }
 
-	public Date getRegEndTime() {
-		return regEndTime;
-	}
+    public void setRegTime(Date regTime) {
+        this.regTime = regTime;
+    }
 
-	public void setRegEndTime(Date regEndTime) {
-		this.regEndTime = regEndTime;
-	}
+    public Date getRegEndTime() {
+        return regEndTime;
+    }
 
-	public Date getInterviewTime() {
-		return interviewTime;
-	}
+    public void setRegEndTime(Date regEndTime) {
+        this.regEndTime = regEndTime;
+    }
 
-	public void setInterviewTime(Date interviewTime) {
-		this.interviewTime = interviewTime;
-	}
+    public Date getInterviewTime() {
+        return interviewTime;
+    }
 
-	public Date getStartTime() {
-		return startTime;
-	}
+    public void setInterviewTime(Date interviewTime) {
+        this.interviewTime = interviewTime;
+    }
 
-	public void setStartTime(Date startTime) {
-		this.startTime = startTime;
-	}
+    public Date getStartTime() {
+        return startTime;
+    }
 
-	public Date getEndTime() {
-		return endTime;
-	}
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
 
-	public void setEndTime(Date endTime) {
-		this.endTime = endTime;
-	}
+    public Date getEndTime() {
+        return endTime;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getSponser() {
+        return sponser;
+    }
+
+    public void setSponser(String sponser) {
+        this.sponser = sponser == null ? null : sponser.trim();
+    }
 }

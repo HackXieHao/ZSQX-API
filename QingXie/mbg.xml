@@ -12,7 +12,7 @@
 		</commentGenerator>
 
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://123.207.87.34:3306/qingxie" userId="evans" password="Evans2018!">
+			connectionURL="jdbc:mysql://123.207.87.34:3306/qingxie" userId="evans" password="">
 		</jdbcConnection>
 
 		<javaTypeResolver>
@@ -21,7 +21,7 @@
  
 		<!-- 指定javabean的生成位置 -->
 
-		<javaModelGenerator targetPackage="com.selfcreate.qingxie.bean.user"
+		<javaModelGenerator targetPackage="com.selfcreate.qingxie.bean.system"
 			targetProject=".\src\main\java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
@@ -29,23 +29,56 @@
 
 		<!-- 指定sql映射文件的生成位置 -->
 
-		<sqlMapGenerator targetPackage="mapper.user" targetProject=".\src\main\resources">
+		<sqlMapGenerator targetPackage="mapper.system" targetProject=".\src\main\resources">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
 		<!-- 指定dao接口的生成位置 mapper接口 -->
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="com.selfcreate.qingxie.dao.user" targetProject=".\src\main\java">
+			targetPackage="com.selfcreate.qingxie.dao.system" targetProject=".\src\main\java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		
 		<!-- 此处添加新建的表 -->
-		<table tableName="activity" domainObjectName="Activity">
+		<!-- <table tableName="activity" domainObjectName="Activity">
+			<property name="useActualColumnNames" value="true"></property>
+		</table> -->
+		<!-- <table tableName="activity_details_picture" domainObjectName="ActivityDetailsPicture">
+			<property name="useActualColumnNames" value="true"></property>
+		</table> -->
+		<!-- <table tableName="homepage_picture" domainObjectName="HomepagePicture">
+			<property name="useActualColumnNames" value="true"></property>
+		</table> -->
+		<!-- <table tableName="user_experience" domainObjectName="UserExperience">
+			<property name="useActualColumnNames" value="true"></property>
+		</table> -->
+		<!-- <table tableName="icon" domainObjectName="Icon">
+			<property name="useActualColumnNames" value="true"></property>
+		</table> -->
+		<!-- <table tableName="user_activity_hours" domainObjectName="UserActivityHours">
+			<property name="useActualColumnNames" value="true"></property>
+		</table> -->
+		<!-- <table tableName="user_activity" domainObjectName="UserActivity">
+			<property name="useActualColumnNames" value="true"></property>
+		</table> -->
+		<!-- <table tableName="class_info" domainObjectName="ClassInfo">
+			<property name="useActualColumnNames" value="true"></property>
+		</table> -->
+		<!-- <table tableName="hours_change_log" domainObjectName="HoursChangeLog">
+			<property name="useActualColumnNames" value="true"></property>
+		</table> -->
+		<!-- <table tableName="favourite" domainObjectName="Favourite">
+			<property name="useActualColumnNames" value="true"></property>
+		</table> -->
+		<!-- <table tableName="register_form" domainObjectName="RegisterForm">
+			<property name="useActualColumnNames" value="true"></property>
+		</table> -->
+		<table tableName="notice" domainObjectName="Notice">
 			<!-- <property name="useActualColumnNames" value="true"></property> -->
 		</table>
-		<table tableName="user" domainObjectName="User">
-			<!-- <property name="useActualColumnNames" value="true"></property> -->
-		</table>
+		<!-- <table tableName="user" domainObjectName="User">
+			<property name="useActualColumnNames" value="true"></property>
+		</table> -->
 
 	</context>
 </generatorConfiguration>
