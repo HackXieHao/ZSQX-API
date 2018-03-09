@@ -40,9 +40,10 @@
 		</javaClientGenerator>
 		
 		<!-- 此处添加新建的表 -->
-		<table tableName="activity" domainObjectName="Activity">
-			<!-- <property name="useActualColumnNames" value="true"></property> -->
-		</table>
+		<!--<table tableName="activity" domainObjectName="Activity">-->
+			<!--&lt;!&ndash; <property name="useActualColumnNames" value="true"></property> &ndash;&gt;-->
+		<!--</table>-->
+		<table tableName="class_info"/>
 		<!-- <table tableName="activity_details_picture" domainObjectName="ActivityDetailsPicture">
 			<property name="useActualColumnNames" value="true"></property>
 		</table> -->
