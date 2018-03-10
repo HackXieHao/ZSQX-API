@@ -135,7 +135,7 @@
 <input type="button" value="ReleaseActivity" id="releaseActivity"/>
 <h4>登陆接口测试</h4>
 <form action="/user/login" method="post">
-    <p>identification: <input type="text" name="identification" class="text-input"/></p>
+    <p>identification: <input type="text" name="identification" class="text-input"/><label>测试账号246666,密码4455</label></p>
     <p>password: <input type="text" name="password" class="text-input"/></p>
     <%--<input type="submit" value="submit">--%>
     <input type="button" value="login" id="login"> <input type="button" value="getResume" id="getResume">

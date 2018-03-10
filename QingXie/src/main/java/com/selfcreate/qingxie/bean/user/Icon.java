@@ -9,6 +9,13 @@ public class Icon {
 
     private Date createTime;
 
+    public Icon() {
+    }
+
+    public Icon(String iconPath) {
+        this.iconPath = iconPath;
+    }
+
     public Integer getIconId() {
         return iconId;
     }

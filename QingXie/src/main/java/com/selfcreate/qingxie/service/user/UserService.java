@@ -8,7 +8,9 @@ import com.selfcreate.qingxie.exception.InvalidPasswordException;
 import com.selfcreate.qingxie.exception.InvalidStudentIdException;
 import com.selfcreate.qingxie.exception.QingxieInnerException;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -60,14 +62,22 @@ public interface UserService {
      */
     int updateBasicInfo(User user) throws QingxieInnerException;
 
+
     /**
      * 更新用户头像
-     *
-     * @param record
+     * 存储图像到服务器，保存图片路径到数据库，返回路径
+     * @param userId
+     * @param icon
      * @return
      */
-    int updateIcon(User record);
+    String updateIcon(int userId, MultipartFile icon);
 
+    /**
+     * 根据用户id 从icon表获取iconId，从icon表查询对应记录，返回path
+     * @param userId
+     * @return
+     */
+    String getIconUrl(int userId);
     /**
      * 根据type判断是更新、插入、删除
      *
