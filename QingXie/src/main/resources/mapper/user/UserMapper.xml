@@ -10,7 +10,7 @@
     <result column="role_id" jdbcType="INTEGER" property="roleId" />
     <result column="gender" jdbcType="VARCHAR" property="gender" />
     <result column="class_id" jdbcType="INTEGER" property="classId" />
-    <result column="hours" jdbcType="INTEGER" property="hours" />
+    <result column="hours" jdbcType="DOUBLE" property="hours" />
     <result column="icon_id" jdbcType="INTEGER" property="iconId" />
     <result column="telephone" jdbcType="VARCHAR" property="telephone" />
     <result column="qq" jdbcType="VARCHAR" property="qq" />
@@ -79,7 +79,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, student_id, name, password, flag, role_id, gender, class_id, hours, icon_id, 
+    id, student_id, name, password, flag, role_id, gender, class_id, hours, icon_id,
     telephone, qq, email, wechat, token, validation, last_login_time
   </sql>
   <select id="selectByExample" parameterType="com.selfcreate.qingxie.bean.user.UserExample" resultMap="BaseResultMap">
@@ -121,8 +121,8 @@
       validation, last_login_time)
     values (#{id,jdbcType=INTEGER}, #{studentId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{flag,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}, 
-      #{gender,jdbcType=VARCHAR}, #{classId,jdbcType=INTEGER}, #{hours,jdbcType=INTEGER}, 
-      #{iconId,jdbcType=INTEGER}, #{telephone,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{classId,jdbcType=INTEGER}, #{hours,jdbcType=DOUBLE},
+      #{iconId,jdbcType=INTEGER}, #{telephone,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR},
       #{email,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, 
       #{validation,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP})
   </insert>
@@ -207,7 +207,7 @@
         #{classId,jdbcType=INTEGER},
       </if>
       <if test="hours != null">
-        #{hours,jdbcType=INTEGER},
+        #{hours,jdbcType=DOUBLE},
       </if>
       <if test="iconId != null">
         #{iconId,jdbcType=INTEGER},
@@ -269,7 +269,7 @@
         class_id = #{record.classId,jdbcType=INTEGER},
       </if>
       <if test="record.hours != null">
-        hours = #{record.hours,jdbcType=INTEGER},
+        hours = #{record.hours,jdbcType=DOUBLE},
       </if>
       <if test="record.iconId != null">
         icon_id = #{record.iconId,jdbcType=INTEGER},
@@ -310,7 +310,7 @@
       role_id = #{record.roleId,jdbcType=INTEGER},
       gender = #{record.gender,jdbcType=VARCHAR},
       class_id = #{record.classId,jdbcType=INTEGER},
-      hours = #{record.hours,jdbcType=INTEGER},
+      hours = #{record.hours,jdbcType=DOUBLE},
       icon_id = #{record.iconId,jdbcType=INTEGER},
       telephone = #{record.telephone,jdbcType=VARCHAR},
       qq = #{record.qq,jdbcType=VARCHAR},
@@ -348,7 +348,7 @@
         class_id = #{classId,jdbcType=INTEGER},
       </if>
       <if test="hours != null">
-        hours = #{hours,jdbcType=INTEGER},
+        hours = #{hours,jdbcType=DOUBLE},
       </if>
       <if test="iconId != null">
         icon_id = #{iconId,jdbcType=INTEGER},
@@ -386,7 +386,7 @@
       role_id = #{roleId,jdbcType=INTEGER},
       gender = #{gender,jdbcType=VARCHAR},
       class_id = #{classId,jdbcType=INTEGER},
-      hours = #{hours,jdbcType=INTEGER},
+      hours = #{hours,jdbcType=DOUBLE},
       icon_id = #{iconId,jdbcType=INTEGER},
       telephone = #{telephone,jdbcType=VARCHAR},
       qq = #{qq,jdbcType=VARCHAR},

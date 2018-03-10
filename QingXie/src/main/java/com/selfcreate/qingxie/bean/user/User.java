@@ -23,7 +23,7 @@ public class User {
 
     private Integer classId;
 
-    private Integer hours;
+    private Double hours;
 
     private Integer iconId;
 
@@ -42,6 +42,17 @@ public class User {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date lastLoginTime;
+
+    public User() {
+    }
+
+    public User(Integer id, String telephone, String qq, String email, String wechat) {
+        this.id = id;
+        this.telephone = telephone;
+        this.qq = qq;
+        this.email = email;
+        this.wechat = wechat;
+    }
 
     public Integer getId() {
         return id;
@@ -107,11 +118,11 @@ public class User {
         this.classId = classId;
     }
 
-    public Integer getHours() {
+    public Double getHours() {
         return hours;
     }
 
-    public void setHours(Integer hours) {
+    public void setHours(Double hours) {
         this.hours = hours;
     }
 
