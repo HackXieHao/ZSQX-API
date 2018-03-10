@@ -10,7 +10,7 @@ public interface ClassInfoMapper {
 
     int deleteByExample(ClassInfoExample example);
 
-    int deleteByPrimaryKey(Short id);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(ClassInfo record);
 
@@ -18,7 +18,7 @@ public interface ClassInfoMapper {
 
     List<ClassInfo> selectByExample(ClassInfoExample example);
 
-    ClassInfo selectByPrimaryKey(Short id);
+    ClassInfo selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") ClassInfo record, @Param("example") ClassInfoExample example);
 
