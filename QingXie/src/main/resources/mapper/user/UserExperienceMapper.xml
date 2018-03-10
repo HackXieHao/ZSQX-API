@@ -99,13 +99,13 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.selfcreate.qingxie.bean.user.UserExperience">
+  <insert id="insert" parameterType="com.selfcreate.qingxie.bean.user.UserExperience" useGeneratedKeys="true" keyProperty="id">
     insert into user_experience (id, user_id, activity_name, 
       begin, end)
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{activityName,jdbcType=VARCHAR}, 
       #{begin,jdbcType=TIMESTAMP}, #{end,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.selfcreate.qingxie.bean.user.UserExperience">
+  <insert id="insertSelective" parameterType="com.selfcreate.qingxie.bean.user.UserExperience" useGeneratedKeys="true" keyProperty="id">
     insert into user_experience
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
