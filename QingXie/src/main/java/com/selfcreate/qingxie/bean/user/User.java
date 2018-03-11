@@ -2,10 +2,6 @@ package com.selfcreate.qingxie.bean.user;
 
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 public class User {
     private Integer id;
 
@@ -39,8 +35,14 @@ public class User {
 
     private String validation;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date birthDate;
+
+    private String politicalStatus;
+
+    private Integer age;
+
+    private String profile;
+
     private Date lastLoginTime;
 
     public User() {
@@ -180,6 +182,38 @@ public class User {
 
     public void setValidation(String validation) {
         this.validation = validation == null ? null : validation.trim();
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getPoliticalStatus() {
+        return politicalStatus;
+    }
+
+    public void setPoliticalStatus(String politicalStatus) {
+        this.politicalStatus = politicalStatus == null ? null : politicalStatus.trim();
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile == null ? null : profile.trim();
     }
 
     public Date getLastLoginTime() {
