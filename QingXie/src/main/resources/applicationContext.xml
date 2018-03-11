@@ -47,7 +47,12 @@
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!--  <property name="maxUploadSize" value="2048000"></property> -->
+		<!--TODO:暂定最大上传为2M，方便测试-->
+		<property name="maxUploadSize" value="2097152"/>
+		<property name="maxInMemorySize" value="0"/>
+	</bean>
 	<!-- 开启基于注解的事务 -->
 	<aop:config>
 		<!-- 配置切入点的位置 -->
