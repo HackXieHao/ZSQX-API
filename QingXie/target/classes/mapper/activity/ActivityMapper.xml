@@ -20,6 +20,7 @@
     <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="sponser" jdbcType="VARCHAR" property="sponser" />
+    <result column="homepage_pic" jdbcType="VARCHAR" property="homepagePic" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -82,7 +83,7 @@
   <sql id="Base_Column_List">
     id, name, manager_id, type, status, hours, hour_per_time, need_volunteers, place, 
     general, descriptions, reg_time, reg_end_time, interview_time, start_time, end_time, 
-    create_time, sponser
+    create_time, sponser, homepage_pic
   </sql>
   <select id="selectByExample" parameterType="com.selfcreate.qingxie.bean.activity.ActivityExample" resultMap="BaseResultMap">
     select
@@ -120,15 +121,15 @@
       hour_per_time, need_volunteers, place, 
       general, descriptions, reg_time, 
       reg_end_time, interview_time, start_time, 
-      end_time, create_time, sponser
-      )
+      end_time, create_time, sponser, 
+      homepage_pic)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{managerId,jdbcType=INTEGER}, 
       #{type,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{hours,jdbcType=DOUBLE}, 
       #{hourPerTime,jdbcType=DOUBLE}, #{needVolunteers,jdbcType=INTEGER}, #{place,jdbcType=VARCHAR}, 
       #{general,jdbcType=VARCHAR}, #{descriptions,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP}, 
       #{regEndTime,jdbcType=TIMESTAMP}, #{interviewTime,jdbcType=TIMESTAMP}, #{startTime,jdbcType=TIMESTAMP}, 
-      #{endTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{sponser,jdbcType=VARCHAR}
-      )
+      #{endTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{sponser,jdbcType=VARCHAR}, 
+      #{homepagePic,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.selfcreate.qingxie.bean.activity.Activity">
     insert into activity
@@ -187,6 +188,9 @@
       <if test="sponser != null">
         sponser,
       </if>
+      <if test="homepagePic != null">
+        homepage_pic,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -242,6 +246,9 @@
       </if>
       <if test="sponser != null">
         #{sponser,jdbcType=VARCHAR},
+      </if>
+      <if test="homepagePic != null">
+        #{homepagePic,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -308,6 +315,9 @@
       <if test="record.sponser != null">
         sponser = #{record.sponser,jdbcType=VARCHAR},
       </if>
+      <if test="record.homepagePic != null">
+        homepage_pic = #{record.homepagePic,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -332,7 +342,8 @@
       start_time = #{record.startTime,jdbcType=TIMESTAMP},
       end_time = #{record.endTime,jdbcType=TIMESTAMP},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      sponser = #{record.sponser,jdbcType=VARCHAR}
+      sponser = #{record.sponser,jdbcType=VARCHAR},
+      homepage_pic = #{record.homepagePic,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -391,6 +402,9 @@
       <if test="sponser != null">
         sponser = #{sponser,jdbcType=VARCHAR},
       </if>
+      <if test="homepagePic != null">
+        homepage_pic = #{homepagePic,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -412,7 +426,8 @@
       start_time = #{startTime,jdbcType=TIMESTAMP},
       end_time = #{endTime,jdbcType=TIMESTAMP},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      sponser = #{sponser,jdbcType=VARCHAR}
+      sponser = #{sponser,jdbcType=VARCHAR},
+      homepage_pic = #{homepagePic,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

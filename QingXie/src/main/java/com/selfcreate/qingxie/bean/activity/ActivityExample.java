@@ -1244,6 +1244,76 @@ public class ActivityExample {
             addCriterion("sponser not between", value1, value2, "sponser");
             return (Criteria) this;
         }
+
+        public Criteria andHomepagePicIsNull() {
+            addCriterion("homepage_pic is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomepagePicIsNotNull() {
+            addCriterion("homepage_pic is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomepagePicEqualTo(String value) {
+            addCriterion("homepage_pic =", value, "homepagePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomepagePicNotEqualTo(String value) {
+            addCriterion("homepage_pic <>", value, "homepagePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomepagePicGreaterThan(String value) {
+            addCriterion("homepage_pic >", value, "homepagePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomepagePicGreaterThanOrEqualTo(String value) {
+            addCriterion("homepage_pic >=", value, "homepagePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomepagePicLessThan(String value) {
+            addCriterion("homepage_pic <", value, "homepagePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomepagePicLessThanOrEqualTo(String value) {
+            addCriterion("homepage_pic <=", value, "homepagePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomepagePicLike(String value) {
+            addCriterion("homepage_pic like", value, "homepagePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomepagePicNotLike(String value) {
+            addCriterion("homepage_pic not like", value, "homepagePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomepagePicIn(List<String> values) {
+            addCriterion("homepage_pic in", values, "homepagePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomepagePicNotIn(List<String> values) {
+            addCriterion("homepage_pic not in", values, "homepagePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomepagePicBetween(String value1, String value2) {
+            addCriterion("homepage_pic between", value1, value2, "homepagePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomepagePicNotBetween(String value1, String value2) {
+            addCriterion("homepage_pic not between", value1, value2, "homepagePic");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

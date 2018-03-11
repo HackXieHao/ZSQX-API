@@ -51,12 +51,12 @@
 	}
 
 	$(function() {
-		$("#getAll").click(function() {
-			ajaxRequestGet("user/getAll");
+		$("#getMyVolunteerService").click(function() {
+			ajaxRequestGet("activity/getMyVolunteerService?page=2&size=2");
 		});
 
 		$("#getAllActivities").click(function() {
-			ajaxRequestGet("activity/getAllActivities");
+			ajaxRequestGet("activity/getAllActivities?page=1&size=2");
 		});
 
 		$("#releaseActivity").click(function() {
@@ -73,7 +73,8 @@
 				'general':'东院敬老院活动，打扫卫生',
 				'needVolunteers':10,
 				'place':'东院敬老院',
-				'type':2
+				'type':2,
+				'status':1
 			}
 			ajaxRequestPost('activity/releaseActivity','PUT',data);
 		});
@@ -82,8 +83,8 @@
 </script>
 </head>
 <body>
-	<h4>User获取接口测试</h4>
-	<input type="button" value="GetAll" id="getAll" />
+	<h4>我的志愿服务获取接口测试</h4>
+	<input type="button" value="GetMyVolunteerService" id="getMyVolunteerService" />
 
 	<h4>Activity获取接口测试</h4>
 	<input type="button" value="GetAllActivities" id="getAllActivities" />

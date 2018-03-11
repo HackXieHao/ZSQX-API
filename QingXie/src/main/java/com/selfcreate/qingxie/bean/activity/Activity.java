@@ -2,6 +2,10 @@ package com.selfcreate.qingxie.bean.activity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Activity {
     private Integer id;
 
@@ -25,19 +29,31 @@ public class Activity {
 
     private String descriptions;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date regTime;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date regEndTime;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date interviewTime;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date startTime;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date endTime;
 
     private Date createTime;
 
     private String sponser;
+
+    private String homepagePic;
 
     public Integer getId() {
         return id;
@@ -181,5 +197,13 @@ public class Activity {
 
     public void setSponser(String sponser) {
         this.sponser = sponser == null ? null : sponser.trim();
+    }
+
+    public String getHomepagePic() {
+        return homepagePic;
+    }
+
+    public void setHomepagePic(String homepagePic) {
+        this.homepagePic = homepagePic == null ? null : homepagePic.trim();
     }
 }

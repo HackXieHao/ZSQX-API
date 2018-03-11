@@ -12,7 +12,7 @@
 		</commentGenerator>
 
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://123.207.87.34:3306/qingxie" userId="evans" password="">
+			connectionURL="jdbc:mysql://123.207.87.34:3306/qingxie" userId="evans" password="qx201803qx">
 		</jdbcConnection>
 
 		<javaTypeResolver>
@@ -41,7 +41,6 @@
 		
 		<!-- 此处添加新建的表 -->
 		<table tableName="activity" domainObjectName="Activity">
-			<!-- <property name="useActualColumnNames" value="true"></property> -->
 		</table>
 		<!-- <table tableName="activity_details_picture" domainObjectName="ActivityDetailsPicture">
 			<property name="useActualColumnNames" value="true"></property>
