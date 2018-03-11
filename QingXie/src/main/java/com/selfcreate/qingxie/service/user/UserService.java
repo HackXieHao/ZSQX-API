@@ -60,7 +60,7 @@ public interface UserService {
      * @param user
      * @return
      */
-    int updateBasicInfo(User user) throws QingxieInnerException;
+    User updateBasicInfo(User user) throws QingxieInnerException;
 
 
     /**

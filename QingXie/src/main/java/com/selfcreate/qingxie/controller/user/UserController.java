@@ -178,8 +178,9 @@ public class UserController {
             if (userId != user.getId()) {
                 return Msg.error("非法请求");
             }
-            if (userService.updateBasicInfo(user) > 0) {
-                return Msg.success("更新成功");
+            user=userService.updateBasicInfo(user);
+            if (user!=null) {
+                return Msg.success("更新成功").add("user", user);
             } else {
                 return Msg.error("数据已是最新");
             }
@@ -195,8 +196,8 @@ public class UserController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/{userId}/icon/update", method = RequestMethod.PUT)
-    public Msg updateIcon(HttpServletRequest request, @PathVariable("userId") int userId, MultipartFile icon) {
+    @RequestMapping(value = "/{userId}/icon/update", method = RequestMethod.POST)
+    public Msg updateIcon(HttpServletRequest request, @PathVariable("userId") int userId, @RequestParam(value="icon",required=false)MultipartFile icon) {
         if(icon==null){
             return Msg.error("上传头像为空");
         }

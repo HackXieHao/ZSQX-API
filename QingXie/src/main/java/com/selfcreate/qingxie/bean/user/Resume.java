@@ -38,6 +38,10 @@ public class Resume {
         this.email = user.getTelephone();
         this.wechat = user.getWechat();
         this.hours = user.getHours();
+        this.birthDate=user.getBirthDate();
+        this.age=user.getAge();
+        this.politicalStatus=user.getPoliticalStatus();
+        this.profile=user.getProfile();
     }
 
     public String getClassName() {

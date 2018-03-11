@@ -154,7 +154,6 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 返回0表示操作成功,返回-1表示失败，返回>0表示插入的主键
-     * TODO:需要明确插入返回的是主键吗？
      *
      * @param experience
      * @param type
@@ -191,11 +190,19 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public int updateBasicInfo(User record) {
+    public User updateBasicInfo(User record) {
         try {
             User updatedUser = new User(record.getId(), record.getTelephone(),
                     record.getQq(), record.getEmail(), record.getWechat());
-            return userMapper.updateByPrimaryKeySelective(updatedUser);
+
+            int update=userMapper.updateByPrimaryKeySelective(updatedUser);
+            if(update>0){
+                updatedUser=userMapper.selectByPrimaryKey(updatedUser.getId());
+                formatUserInfo(updatedUser);
+                return updatedUser;
+            }else{
+                return null;
+            }
         } catch (Exception e) {
             throw new QingxieInnerException(e.getMessage());
         }
@@ -204,11 +211,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public String updateIcon(@NotNull int userId, @NotNull MultipartFile icon) {
         //接收到图片，生产存储路径，然后返回存储路径
-        String name = icon.getName();
-        String savePath = FileUtil.getSavePath(userId, icon.getName());
+        String name = icon.getOriginalFilename();
+
+        String savePath = FileUtil.getSavePath(userId, name);
         try (InputStream is = icon.getInputStream();
              FileOutputStream fos = new FileOutputStream(savePath)) {
-            fos.write(is.read());
+            byte[] bytes=new byte[is.available()];
+            is.read(bytes);
+            fos.write(bytes);
         } catch (IOException e) {
             e.printStackTrace();
             logger.error(e.getMessage());
@@ -217,8 +227,8 @@ public class UserServiceImpl implements UserService {
         String accessPath = FileUtil.getAccessPath(userId, name);
         try {
             Icon iconRecord = new Icon();
-            //TODO: TO TEST GENERIC KEY
-            int iconId = iconMapper.insert(iconRecord);
+            iconRecord.setIconPath(accessPath);
+            iconMapper.insert(iconRecord);
             User user = new User();
             user.setId(userId);
             user.setIconId(iconRecord.getIconId());
