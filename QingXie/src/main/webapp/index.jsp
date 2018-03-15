@@ -10,6 +10,11 @@
         /* const serverPath = 'http://localhost:8787/';
          const access_token = '';
          */
+        var user={
+            userId:null,
+            studentId:null,
+            name:null
+        }
         //模拟Get请求
         function ajaxRequestGet(uri) {
             /* var server = serverPath;
