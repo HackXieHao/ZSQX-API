@@ -13,7 +13,7 @@ public class Resume {
     private String name;
     private String className;
     private Date birthDate;
-    private int age;
+    private Integer age;
     private String politicalStatus;
     /**
      * 个人简历
@@ -84,11 +84,11 @@ public class Resume {
         this.birthDate = birthDate;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 

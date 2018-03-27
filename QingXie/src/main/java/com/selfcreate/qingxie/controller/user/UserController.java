@@ -59,10 +59,15 @@ public class UserController {
             //保存用户session
             HttpSession session = request.getSession();
             CommonCache.sessionMap.put(session.getId(), session);
+
+            //获取用户头像地址
+            String accessPath=userService.getIconUrl(user.getId());
+
             //返回sessionId
             response.setHeader("sessionId", session.getId());
             System.out.println("登陆成功！");
-            return Msg.success("登陆成功").add("user", user)
+            return Msg.success("登陆成功").add("User", user)
+                    .add("iconAccessPath", accessPath)
                     .add("sessionId", session.getId());
         } catch (InvalidStudentIdException | InvalidPasswordException e) {
             return Msg.error(e.getMessage());
@@ -95,11 +100,11 @@ public class UserController {
         System.out.print(">>>>用户:" + userId + "请求获取简历");
         try {
             //验证是否已登陆
-            if (!CommonCache.sessionMap.containsKey(request.getSession().getId())) {
-                return Msg.error("非法访问");
-            }
+//            if (!CommonCache.sessionMap.containsKey(request.getSession().getId())) {
+//                return Msg.error("非法访问");
+//            }
             Resume resume = userService.getResume(userId);
-            return Msg.success("请求成功").add("resume", resume);
+            return Msg.success("请求成功").add("Resume", resume);
         } catch (QingxieInnerException e) {
             return Msg.error(e.getMessage());
         }
@@ -160,7 +165,7 @@ public class UserController {
             userService.updateUserExperience(experience, RequestMethod.POST);
             //如果experience的id不为空，则表示数据插入成功
             if(experience.getId()!=null){
-                return Msg.success("添加成功").add("experience", experience);
+                return Msg.success("添加成功").add("Experience", experience);
             }else{
                 return Msg.error("添加失败");
             }
@@ -180,7 +185,7 @@ public class UserController {
             }
             user=userService.updateBasicInfo(user);
             if (user!=null) {
-                return Msg.success("更新成功").add("user", user);
+                return Msg.success("更新成功").add("User", user);
             } else {
                 return Msg.error("数据已是最新");
             }
@@ -225,6 +230,7 @@ public class UserController {
     }
 
     /**
+     * FIXME:测试代码，需要删除
      * 从服务器读取图片，在response中以输出流的方式返回客户端
      * @param response
      */
