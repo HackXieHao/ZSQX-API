@@ -246,6 +246,9 @@ public class UserServiceImpl implements UserService {
         try {
             User user = userMapper.selectByPrimaryKey(userId);
             Icon icon = iconMapper.selectByPrimaryKey(user.getIconId());
+            if(icon==null){
+                return "";
+            }
             return icon.getIconPath();
         } catch (Exception e) {
             logger.error(e.getMessage());
