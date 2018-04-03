@@ -141,7 +141,7 @@
             $("#login").click(function () {
                 var data = {
                     'studentId': $("input[name='identification']").val(),
-                    'password': md5($("input[name='password']").val())
+                    'password': $("input[name='password']").val()
                 }
                 console.log(data.studentId);
                 console.log(data.password);
