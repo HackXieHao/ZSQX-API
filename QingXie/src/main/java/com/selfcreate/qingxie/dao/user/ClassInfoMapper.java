@@ -2,11 +2,12 @@ package com.selfcreate.qingxie.dao.user;
 
 import com.selfcreate.qingxie.bean.user.ClassInfo;
 import com.selfcreate.qingxie.bean.user.ClassInfoExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface ClassInfoMapper {
-    long countByExample(ClassInfoExample example);
+    int countByExample(ClassInfoExample example);
 
     int deleteByExample(ClassInfoExample example);
 

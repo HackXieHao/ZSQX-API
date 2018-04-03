@@ -272,6 +272,18 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  <insert id="insertBatch" parameterType="java.util.List">
+    INSERT INTO user (student_id,name,password,class_id) VALUES
+    <foreach collection="list" item="item" index="index"
+             separator=",">
+      (
+      #{item.studentId},
+      #{item.name},
+      #{item.password},
+      #{item.classId}
+      )
+    </foreach>
+  </insert>
   <update id="updateByExampleSelective" parameterType="map" >
     update user
     <set >

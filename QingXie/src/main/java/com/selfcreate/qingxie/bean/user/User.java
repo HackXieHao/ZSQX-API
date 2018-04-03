@@ -56,6 +56,12 @@ public class User {
         this.wechat = wechat;
     }
 
+    public User(String name, String studentId,String password) {
+        this.name = name;
+        this.studentId = studentId;
+        this.password = password;
+    }
+
     public Integer getId() {
         return id;
     }
