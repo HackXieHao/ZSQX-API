@@ -1175,73 +1175,73 @@ public class ActivityExample {
             return (Criteria) this;
         }
 
-        public Criteria andSponserIsNull() {
-            addCriterion("sponser is null");
+        public Criteria andSponsorIsNull() {
+            addCriterion("sponsor is null");
             return (Criteria) this;
         }
 
-        public Criteria andSponserIsNotNull() {
-            addCriterion("sponser is not null");
+        public Criteria andSponsorIsNotNull() {
+            addCriterion("sponsor is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSponserEqualTo(String value) {
-            addCriterion("sponser =", value, "sponser");
+        public Criteria andSponsorEqualTo(String value) {
+            addCriterion("sponsor =", value, "sponsor");
             return (Criteria) this;
         }
 
-        public Criteria andSponserNotEqualTo(String value) {
-            addCriterion("sponser <>", value, "sponser");
+        public Criteria andSponsorNotEqualTo(String value) {
+            addCriterion("sponsor <>", value, "sponsor");
             return (Criteria) this;
         }
 
-        public Criteria andSponserGreaterThan(String value) {
-            addCriterion("sponser >", value, "sponser");
+        public Criteria andSponsorGreaterThan(String value) {
+            addCriterion("sponsor >", value, "sponsor");
             return (Criteria) this;
         }
 
-        public Criteria andSponserGreaterThanOrEqualTo(String value) {
-            addCriterion("sponser >=", value, "sponser");
+        public Criteria andSponsorGreaterThanOrEqualTo(String value) {
+            addCriterion("sponsor >=", value, "sponsor");
             return (Criteria) this;
         }
 
-        public Criteria andSponserLessThan(String value) {
-            addCriterion("sponser <", value, "sponser");
+        public Criteria andSponsorLessThan(String value) {
+            addCriterion("sponsor <", value, "sponsor");
             return (Criteria) this;
         }
 
-        public Criteria andSponserLessThanOrEqualTo(String value) {
-            addCriterion("sponser <=", value, "sponser");
+        public Criteria andSponsorLessThanOrEqualTo(String value) {
+            addCriterion("sponsor <=", value, "sponsor");
             return (Criteria) this;
         }
 
-        public Criteria andSponserLike(String value) {
-            addCriterion("sponser like", value, "sponser");
+        public Criteria andSponsorLike(String value) {
+            addCriterion("sponsor like", value, "sponsor");
             return (Criteria) this;
         }
 
-        public Criteria andSponserNotLike(String value) {
-            addCriterion("sponser not like", value, "sponser");
+        public Criteria andSponsorNotLike(String value) {
+            addCriterion("sponsor not like", value, "sponsor");
             return (Criteria) this;
         }
 
-        public Criteria andSponserIn(List<String> values) {
-            addCriterion("sponser in", values, "sponser");
+        public Criteria andSponsorIn(List<String> values) {
+            addCriterion("sponsor in", values, "sponsor");
             return (Criteria) this;
         }
 
-        public Criteria andSponserNotIn(List<String> values) {
-            addCriterion("sponser not in", values, "sponser");
+        public Criteria andSponsorNotIn(List<String> values) {
+            addCriterion("sponsor not in", values, "sponsor");
             return (Criteria) this;
         }
 
-        public Criteria andSponserBetween(String value1, String value2) {
-            addCriterion("sponser between", value1, value2, "sponser");
+        public Criteria andSponsorBetween(String value1, String value2) {
+            addCriterion("sponsor between", value1, value2, "sponsor");
             return (Criteria) this;
         }
 
-        public Criteria andSponserNotBetween(String value1, String value2) {
-            addCriterion("sponser not between", value1, value2, "sponser");
+        public Criteria andSponsorNotBetween(String value1, String value2) {
+            addCriterion("sponsor not between", value1, value2, "sponsor");
             return (Criteria) this;
         }
 

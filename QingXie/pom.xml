@@ -27,11 +27,13 @@
 		</dependency>
 
 		<!-- 导入pageHelper类 -->
+		<!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper</artifactId>
-			<version>5.0.0</version>
+			<version>5.1.2</version>
 		</dependency>
+
 
 		<!-- 导入Servlet和jsp 的jar包 -->
 		<dependency>
@@ -169,6 +171,12 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>1.2.46</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.16</version>
 		</dependency>
 	</dependencies>
 </project>

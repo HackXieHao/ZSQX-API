@@ -113,13 +113,15 @@ public class UserServiceImpl implements UserService {
             }
             formatUserInfo(user);
             Resume resume = new Resume(user);
-            //班级信息
-            ClassInfoExample classInfoExample = new ClassInfoExample();
-            ClassInfoExample.Criteria criteria4Class = classInfoExample.createCriteria();
-            criteria4Class.andIdEqualTo(user.getClassId());
-            List<ClassInfo> classInfos = classInfoMapper.selectByExample(classInfoExample);
-            if (classInfos != null && !classInfos.isEmpty()) {
-                resume.setClassName(classInfos.get(0).getName());
+            if(user.getClassId()!=null){
+                //班级信息
+                ClassInfoExample classInfoExample = new ClassInfoExample();
+                ClassInfoExample.Criteria criteria4Class = classInfoExample.createCriteria();
+                criteria4Class.andIdEqualTo(user.getClassId());
+                List<ClassInfo> classInfos = classInfoMapper.selectByExample(classInfoExample);
+                if (classInfos != null && !classInfos.isEmpty()) {
+                    resume.setClassName(classInfos.get(0).getName());
+                }
             }
             //用户经历
             List<UserExperience> experiences;
@@ -127,7 +129,7 @@ public class UserServiceImpl implements UserService {
             UserExperienceExample.Criteria criteria = experienceExample.createCriteria();
             criteria.andUserIdEqualTo(user.getId());
             experiences = userExperienceMapper.selectByExample(experienceExample);
-            if (experiences != null) {
+            if (experiences != null&&!experiences.isEmpty()) {
                 resume.setExperiences(experiences);
             }
             return resume;

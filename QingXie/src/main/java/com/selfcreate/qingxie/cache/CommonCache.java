@@ -9,5 +9,6 @@ import java.util.Map;
  */
 
 public class CommonCache {
+    //FIXME:仅用于测试。
     public static Map<String,HttpSession> sessionMap=new HashMap<>();
 }
