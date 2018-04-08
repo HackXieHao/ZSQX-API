@@ -7,8 +7,11 @@ import java.util.List;
 
 import com.selfcreate.qingxie.bean.activity.*;
 import com.selfcreate.qingxie.exception.QingxieInnerException;
+import com.selfcreate.qingxie.service.file.FileService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,6 +25,9 @@ import com.github.pagehelper.PageInfo;
 import com.selfcreate.qingxie.bean.Msg;
 import com.selfcreate.qingxie.bean.user.UserActivity;
 import com.selfcreate.qingxie.service.activity.ActivityService;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RequestMapping("/activity")
 @Controller
@@ -29,6 +35,9 @@ public class ActivityController {
 
     @Autowired
     private ActivityService activityService;
+    @Autowired
+    @Qualifier("picServiceImpl")
+    private FileService picService;
     private final Logger logger = Logger.getLogger(this.getClass());
 
     /**
@@ -192,5 +201,27 @@ public class ActivityController {
     public Msg joinActivity(@PathVariable("activityId") int activityId, @PathVariable("userId") int userId) {
         //TODO
         return null;
+    }
+
+    /**
+     * 活动照片上传接口
+     * FIXME:权限验证
+     * @param request
+     * @param userId 上传用户的id
+     * @param pic
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/{userId}/pic/add", method = RequestMethod.POST)
+    public Msg pushActivity(HttpServletRequest request, @PathVariable("userId") int userId, @RequestParam(value="pic",required=false)MultipartFile pic) {
+        if(pic==null||pic.getSize()==0){
+            return Msg.error("上传图片为空");
+        }
+        try {
+            String accessPath=picService.save2Local(pic, pic.getOriginalFilename());
+            return Msg.success("头像更新成功").add("iconAccessPath", accessPath);
+        }catch (QingxieInnerException e){
+            return Msg.error(e.getMessage());
+        }
     }
 }
