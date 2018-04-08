@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
         if ("".equals(user.getStudentId()) || user.getStudentId() == null) {
             //学号栏为空,尝试作为管理员身份登陆
             criteria.andNameEqualTo(user.getName())
-                    .andFlagEqualTo("M");
+                    .andFlagEqualTo("A");
         } else {
             //学号不为空
             criteria.andStudentIdEqualTo(user.getStudentId());
