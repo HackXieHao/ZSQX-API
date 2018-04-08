@@ -219,7 +219,7 @@ public class ActivityController {
         }
         try {
             String accessPath=picService.save2Local(pic, pic.getOriginalFilename());
-            return Msg.success("头像更新成功").add("iconAccessPath", accessPath);
+            return Msg.success("图片上传成功").add("picAccessPath", accessPath);
         }catch (QingxieInnerException e){
             return Msg.error(e.getMessage());
         }

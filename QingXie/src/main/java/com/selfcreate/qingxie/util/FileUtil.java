@@ -27,7 +27,7 @@ public class FileUtil {
      * @return
      */
     public static String getAccessPath(int userId, String fileName) {
-        return ICON_PATH + "icon" + getSubPath(userId, fileName);
+        return ICON_PATH + "icon" + "/" + getSubPath(userId, fileName);
     }
 
     /**
@@ -113,7 +113,7 @@ public class FileUtil {
     public static String savePic(InputStream in, String name) throws IOException, QingxieInnerException {
         mkdir(PIC_SAVE_PATH);
         String newName = getRandomName(name);
-        try (FileOutputStream fos = new FileOutputStream(newName)) {
+        try (FileOutputStream fos = new FileOutputStream(PIC_SAVE_PATH+"/"+newName)) {
             byte[] bytes = new byte[in.available()];
             in.read(bytes);
             fos.write(bytes);

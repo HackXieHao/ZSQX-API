@@ -209,6 +209,12 @@
 
 <h4>活动报名<input type="button" value="/{activityId}/{userId}/join" id="joinActivity"/></h4>
 
+<h4>活动照片上传
+    <form action="/activity/3/pic/add" enctype="multipart/form-data" method="post">
+        请选择图片:<input type="file" name="pic" id="pic" value="【图片】">
+        <input type="submit" value="上传" id="uploadPic">
+    </form>
+</h4>
 
 <h4>登陆接口测试</h4>
 <form action="/user/login" method="post">
