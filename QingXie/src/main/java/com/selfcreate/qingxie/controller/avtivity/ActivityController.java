@@ -199,8 +199,12 @@ public class ActivityController {
     @ResponseBody
     @RequestMapping(value = "/{activityId}/{userId}/join", method = RequestMethod.POST)
     public Msg joinActivity(@PathVariable("activityId") int activityId, @PathVariable("userId") int userId) {
-        //TODO
-        return null;
+        try {
+            activityService.signUp(userId, activityId);
+            return Msg.success("报名成功");
+        } catch (Exception e) {
+            return Msg.error(e.getMessage());
+        }
     }
 
     /**

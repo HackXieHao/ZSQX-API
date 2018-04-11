@@ -30,4 +30,5 @@ public interface ActivityService {
 
     void releaseActivity(Activity activity);
 
+    void signUp(Integer userId,Integer activityId);
 }

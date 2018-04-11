@@ -14,6 +14,7 @@ import com.selfcreate.qingxie.dao.user.UserActivityMapper;
 import com.selfcreate.qingxie.enums.ActivityStatusEnum;
 import com.selfcreate.qingxie.enums.RolesEnum;
 import com.selfcreate.qingxie.exception.QingxieInnerException;
+import com.selfcreate.qingxie.exception.RepeatOperateException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -166,6 +167,32 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public void releaseActivity(Activity activity) {
         activityMapper.insertSelective(activity);
+    }
+
+    /**
+     * 1.报名人数限制? 无
+     * 2.报名条件限制？无
+     * 3.重复报名
+     * 4.权限验证
+     * @param userId
+     * @param activityId
+     */
+    @Override
+    public void signUp(Integer userId, Integer activityId) {
+        //查询是否已存在报名信息
+        UserActivityExample example=new UserActivityExample();
+        example.createCriteria().andUserIdEqualTo(userId).andActivityIdEqualTo(activityId);
+        boolean hasSignedUp=userActivityMapper.selectByExample(example).size()>0;
+        if(hasSignedUp){
+            throw new RepeatOperateException("重复报名");
+        }
+        UserActivity userActivity=new UserActivity(userId,activityId,0,1,0);
+        try{
+            userActivityMapper.insert(userActivity);
+        }catch (Exception e){
+            logger.error(e.getMessage(), e);
+            throw new QingxieInnerException("数据库异常");
+        }
     }
 
 }
