@@ -1,23 +1,38 @@
 package com.selfcreate.qingxie.util;
 
 import com.selfcreate.qingxie.exception.QingxieInnerException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.DigestUtils;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.util.Properties;
 
 /**
  * @author evans 2018/3/10 15:39
  */
 
 public class FileUtil {
+    private static Properties properties = new Properties();
     private static final String SALT = "lawejgoianw3t43tnzlkesg";
-    public static final String ICON_PATH = "/qingxie-img/";
-    private static final String ICON_SAVE_PATH = "/home/develop/qingxie/icon";
-    private static final String FILE_SAVE_PATH = "/home/develop/qingxie/files";
-    private static final String PIC_SAVE_PATH = "/home/develop/qingxie/pics";
+    public static String ICON_PATH;
+    private static String ICON_SAVE_PATH;
+    private static String FILE_SAVE_PATH;
+    private static String PIC_SAVE_PATH;
+
+    static {
+        //加载配置文件
+        try {
+            properties.load(FileUtil.class.getClassLoader()
+                    .getResourceAsStream("filepath.properties"));
+            ICON_PATH = properties.getProperty("ICON_PATH");
+            ICON_SAVE_PATH = properties.getProperty("ICON_SAVE_PATH");
+            FILE_SAVE_PATH = properties.getProperty("FILE_SAVE_PATH");
+            PIC_SAVE_PATH = properties.getProperty("PIC_SAVE_PATH");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * 返回头像访问路径
@@ -70,7 +85,7 @@ public class FileUtil {
         String name = DigestUtils.md5DigestAsHex(base.getBytes());
         //分目录保存
         String dir = DigestUtils.md5DigestAsHex(((userId / 100) + SALT).getBytes());
-        mkdir(ICON_SAVE_PATH + dir);
+        mkdir(ICON_SAVE_PATH + "/" + dir);
         return dir + "/" + name + type;
     }
 
@@ -113,7 +128,7 @@ public class FileUtil {
     public static String savePic(InputStream in, String name) throws IOException, QingxieInnerException {
         mkdir(PIC_SAVE_PATH);
         String newName = getRandomName(name);
-        try (FileOutputStream fos = new FileOutputStream(PIC_SAVE_PATH+"/"+newName)) {
+        try (FileOutputStream fos = new FileOutputStream(PIC_SAVE_PATH + "/" + newName)) {
             byte[] bytes = new byte[in.available()];
             in.read(bytes);
             fos.write(bytes);

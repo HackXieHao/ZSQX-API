@@ -42,10 +42,4 @@ public class ActivityManageController {
     public Msg confirm(@PathVariable("userId") int userId, UserActivity record){
         throw new RuntimeException();
     }
-
-    @ResponseBody
-    @RequestMapping(value = "/{userId}/list",method = RequestMethod.GET)
-    public Msg getHoursDetails(@PathVariable("userId") int userId){
-        throw new RuntimeException();
-    }
 }
