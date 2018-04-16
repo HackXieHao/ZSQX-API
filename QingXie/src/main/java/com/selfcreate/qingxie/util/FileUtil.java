@@ -81,7 +81,7 @@ public class FileUtil {
         if (fileName.contains(".")) {
             type = fileName.substring(fileName.lastIndexOf("."));
         }
-        String base = fileName + "/" + SALT;
+        String base = fileName + userId + SALT;
         String name = DigestUtils.md5DigestAsHex(base.getBytes());
         //分目录保存
         String dir = DigestUtils.md5DigestAsHex(((userId / 100) + SALT).getBytes());
@@ -94,7 +94,7 @@ public class FileUtil {
         if (originName.contains(".")) {
             type = originName.substring(originName.lastIndexOf("."));
         }
-        String base = originName + "/" + SALT;
+        String base = originName + System.currentTimeMillis() + SALT;
         String name = DigestUtils.md5DigestAsHex(base.getBytes());
         return name + type;
     }
