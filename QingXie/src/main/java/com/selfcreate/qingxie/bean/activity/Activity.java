@@ -29,29 +29,19 @@ public class Activity {
 
     private String descriptions;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date regTime;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date regEndTime;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date interviewTime;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date startTime;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date endTime;
 
     private Date createTime;
 
-    private String sponser;
+    private String sponsor;
 
     private String homepagePic;
 
@@ -191,12 +181,12 @@ public class Activity {
         this.createTime = createTime;
     }
 
-    public String getSponser() {
-        return sponser;
+    public String getSponsor() {
+        return sponsor;
     }
 
-    public void setSponser(String sponser) {
-        this.sponser = sponser == null ? null : sponser.trim();
+    public void setSponsor(String sponsor) {
+        this.sponsor = sponsor == null ? null : sponsor.trim();
     }
 
     public String getHomepagePic() {

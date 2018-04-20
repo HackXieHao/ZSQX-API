@@ -1,17 +1,25 @@
 package com.selfcreate.qingxie.bean.user;
 
 public class ClassInfo {
-    private Short id;
+    private Integer id;
 
     private String name;
 
-    private Integer userId;
+    private String manager;
 
-    public Short getId() {
+    public ClassInfo() {
+    }
+
+    public ClassInfo(String name, String manager) {
+        this.name = name;
+        this.manager = manager;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Short id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -23,11 +31,27 @@ public class ClassInfo {
         this.name = name == null ? null : name.trim();
     }
 
-    public Integer getUserId() {
-        return userId;
+    public String getManager() {
+        return manager;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setManager(String manager) {
+        this.manager = manager;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + name.hashCode() + name.hashCode();
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if ((obj == null) || (obj.getClass() != this.getClass())) {
+            return false;
+        }
+        ClassInfo info = (ClassInfo) obj;
+        return name.equals(info.getName()) && manager.equals(info.getManager());
     }
 }

@@ -97,13 +97,13 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.selfcreate.qingxie.bean.user.Icon">
+  <insert id="insert" parameterType="com.selfcreate.qingxie.bean.user.Icon" useGeneratedKeys="true" keyProperty="iconId">
     insert into icon (icon_id, icon_path, create_time
       )
     values (#{iconId,jdbcType=INTEGER}, #{iconPath,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.selfcreate.qingxie.bean.user.Icon">
+  <insert id="insertSelective" parameterType="com.selfcreate.qingxie.bean.user.Icon" useGeneratedKeys="true" keyProperty="iconId">
     insert into icon
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="iconId != null">

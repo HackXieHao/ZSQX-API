@@ -2,10 +2,6 @@ package com.selfcreate.qingxie.bean.user;
 
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 public class User {
     private Integer id;
 
@@ -23,7 +19,7 @@ public class User {
 
     private Integer classId;
 
-    private Integer hours;
+    private Double hours;
 
     private Integer iconId;
 
@@ -39,9 +35,32 @@ public class User {
 
     private String validation;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date birthDate;
+
+    private String politicalStatus;
+
+    private Integer age;
+
+    private String profile;
+
     private Date lastLoginTime;
+
+    public User() {
+    }
+
+    public User(Integer id, String telephone, String qq, String email, String wechat) {
+        this.id = id;
+        this.telephone = telephone;
+        this.qq = qq;
+        this.email = email;
+        this.wechat = wechat;
+    }
+
+    public User(String name, String studentId,String password) {
+        this.name = name;
+        this.studentId = studentId;
+        this.password = password;
+    }
 
     public Integer getId() {
         return id;
@@ -107,11 +126,11 @@ public class User {
         this.classId = classId;
     }
 
-    public Integer getHours() {
+    public Double getHours() {
         return hours;
     }
 
-    public void setHours(Integer hours) {
+    public void setHours(Double hours) {
         this.hours = hours;
     }
 
@@ -169,6 +188,38 @@ public class User {
 
     public void setValidation(String validation) {
         this.validation = validation == null ? null : validation.trim();
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getPoliticalStatus() {
+        return politicalStatus;
+    }
+
+    public void setPoliticalStatus(String politicalStatus) {
+        this.politicalStatus = politicalStatus == null ? null : politicalStatus.trim();
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile == null ? null : profile.trim();
     }
 
     public Date getLastLoginTime() {
