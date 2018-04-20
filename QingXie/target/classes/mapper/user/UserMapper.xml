@@ -1,44 +1,48 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.selfcreate.qingxie.dao.user.UserMapper">
   <resultMap id="BaseResultMap" type="com.selfcreate.qingxie.bean.user.User">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="student_id" jdbcType="VARCHAR" property="studentId" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="flag" jdbcType="VARCHAR" property="flag" />
-    <result column="role_id" jdbcType="INTEGER" property="roleId" />
-    <result column="gender" jdbcType="VARCHAR" property="gender" />
-    <result column="class_id" jdbcType="INTEGER" property="classId" />
-    <result column="hours" jdbcType="INTEGER" property="hours" />
-    <result column="icon_id" jdbcType="INTEGER" property="iconId" />
-    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
-    <result column="qq" jdbcType="VARCHAR" property="qq" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
-    <result column="token" jdbcType="VARCHAR" property="token" />
-    <result column="validation" jdbcType="VARCHAR" property="validation" />
-    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="student_id" property="studentId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="class_id" property="classId" jdbcType="INTEGER" />
+    <result column="hours" property="hours" jdbcType="DOUBLE" />
+    <result column="icon_id" property="iconId" jdbcType="INTEGER" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="wechat" property="wechat" jdbcType="VARCHAR" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
+    <result column="validation" property="validation" jdbcType="VARCHAR" />
+    <result column="birth_date" property="birthDate" jdbcType="DATE" />
+    <result column="political_status" property="politicalStatus" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="profile" property="profile" jdbcType="VARCHAR" />
+    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -49,25 +53,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -78,229 +82,280 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     id, student_id, name, password, flag, role_id, gender, class_id, hours, icon_id, 
-    telephone, qq, email, wechat, token, validation, last_login_time
+    telephone, qq, email, wechat, token, validation, birth_date, political_status, age, 
+    profile, last_login_time
   </sql>
-  <select id="selectByExample" parameterType="com.selfcreate.qingxie.bean.user.UserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.selfcreate.qingxie.bean.user.UserExample" >
     select
-    <if test="distinct">
+    <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
     from user
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null">
+    <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.selfcreate.qingxie.bean.user.UserExample">
+  <delete id="deleteByExample" parameterType="com.selfcreate.qingxie.bean.user.UserExample" >
     delete from user
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.selfcreate.qingxie.bean.user.User">
-    insert into user (id, student_id, name, 
-      password, flag, role_id, 
-      gender, class_id, hours, 
-      icon_id, telephone, qq, 
-      email, wechat, token, 
-      validation, last_login_time)
-    values (#{id,jdbcType=INTEGER}, #{studentId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{flag,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}, 
-      #{gender,jdbcType=VARCHAR}, #{classId,jdbcType=INTEGER}, #{hours,jdbcType=INTEGER}, 
-      #{iconId,jdbcType=INTEGER}, #{telephone,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, 
-      #{validation,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP})
+  <insert id="insert" parameterType="com.selfcreate.qingxie.bean.user.User" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user (student_id, name, password, 
+      flag, role_id, gender, 
+      class_id, hours, icon_id, 
+      telephone, qq, email, 
+      wechat, token, validation, 
+      birth_date, political_status, age, 
+      profile, last_login_time)
+    values (#{studentId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}, #{gender,jdbcType=VARCHAR}, 
+      #{classId,jdbcType=INTEGER}, #{hours,jdbcType=DOUBLE}, #{iconId,jdbcType=INTEGER}, 
+      #{telephone,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{wechat,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{validation,jdbcType=VARCHAR}, 
+      #{birthDate,jdbcType=DATE}, #{politicalStatus,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
+      #{profile,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.selfcreate.qingxie.bean.user.User">
+  <insert id="insertSelective" parameterType="com.selfcreate.qingxie.bean.user.User" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="studentId != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="studentId != null" >
         student_id,
       </if>
-      <if test="name != null">
+      <if test="name != null" >
         name,
       </if>
-      <if test="password != null">
+      <if test="password != null" >
         password,
       </if>
-      <if test="flag != null">
+      <if test="flag != null" >
         flag,
       </if>
-      <if test="roleId != null">
+      <if test="roleId != null" >
         role_id,
       </if>
-      <if test="gender != null">
+      <if test="gender != null" >
         gender,
       </if>
-      <if test="classId != null">
+      <if test="classId != null" >
         class_id,
       </if>
-      <if test="hours != null">
+      <if test="hours != null" >
         hours,
       </if>
-      <if test="iconId != null">
+      <if test="iconId != null" >
         icon_id,
       </if>
-      <if test="telephone != null">
+      <if test="telephone != null" >
         telephone,
       </if>
-      <if test="qq != null">
+      <if test="qq != null" >
         qq,
       </if>
-      <if test="email != null">
+      <if test="email != null" >
         email,
       </if>
-      <if test="wechat != null">
+      <if test="wechat != null" >
         wechat,
       </if>
-      <if test="token != null">
+      <if test="token != null" >
         token,
       </if>
-      <if test="validation != null">
+      <if test="validation != null" >
         validation,
       </if>
-      <if test="lastLoginTime != null">
+      <if test="birthDate != null" >
+        birth_date,
+      </if>
+      <if test="politicalStatus != null" >
+        political_status,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="profile != null" >
+        profile,
+      </if>
+      <if test="lastLoginTime != null" >
         last_login_time,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="studentId != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="studentId != null" >
         #{studentId,jdbcType=VARCHAR},
       </if>
-      <if test="name != null">
+      <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
+      <if test="password != null" >
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="flag != null">
+      <if test="flag != null" >
         #{flag,jdbcType=VARCHAR},
       </if>
-      <if test="roleId != null">
+      <if test="roleId != null" >
         #{roleId,jdbcType=INTEGER},
       </if>
-      <if test="gender != null">
+      <if test="gender != null" >
         #{gender,jdbcType=VARCHAR},
       </if>
-      <if test="classId != null">
+      <if test="classId != null" >
         #{classId,jdbcType=INTEGER},
       </if>
-      <if test="hours != null">
-        #{hours,jdbcType=INTEGER},
+      <if test="hours != null" >
+        #{hours,jdbcType=DOUBLE},
       </if>
-      <if test="iconId != null">
+      <if test="iconId != null" >
         #{iconId,jdbcType=INTEGER},
       </if>
-      <if test="telephone != null">
+      <if test="telephone != null" >
         #{telephone,jdbcType=VARCHAR},
       </if>
-      <if test="qq != null">
+      <if test="qq != null" >
         #{qq,jdbcType=VARCHAR},
       </if>
-      <if test="email != null">
+      <if test="email != null" >
         #{email,jdbcType=VARCHAR},
       </if>
-      <if test="wechat != null">
+      <if test="wechat != null" >
         #{wechat,jdbcType=VARCHAR},
       </if>
-      <if test="token != null">
+      <if test="token != null" >
         #{token,jdbcType=VARCHAR},
       </if>
-      <if test="validation != null">
+      <if test="validation != null" >
         #{validation,jdbcType=VARCHAR},
       </if>
-      <if test="lastLoginTime != null">
+      <if test="birthDate != null" >
+        #{birthDate,jdbcType=DATE},
+      </if>
+      <if test="politicalStatus != null" >
+        #{politicalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="profile != null" >
+        #{profile,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
         #{lastLoginTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.selfcreate.qingxie.bean.user.UserExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.selfcreate.qingxie.bean.user.UserExample" resultType="java.lang.Integer" >
     select count(*) from user
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+  <insert id="insertBatch" parameterType="java.util.List">
+    INSERT INTO user (student_id,name,password,class_id) VALUES
+    <foreach collection="list" item="item" index="index"
+             separator=",">
+      (
+      #{item.studentId},
+      #{item.name},
+      #{item.password},
+      #{item.classId}
+      )
+    </foreach>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map" >
     update user
-    <set>
-      <if test="record.id != null">
+    <set >
+      <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.studentId != null">
+      <if test="record.studentId != null" >
         student_id = #{record.studentId,jdbcType=VARCHAR},
       </if>
-      <if test="record.name != null">
+      <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.password != null">
+      <if test="record.password != null" >
         password = #{record.password,jdbcType=VARCHAR},
       </if>
-      <if test="record.flag != null">
+      <if test="record.flag != null" >
         flag = #{record.flag,jdbcType=VARCHAR},
       </if>
-      <if test="record.roleId != null">
+      <if test="record.roleId != null" >
         role_id = #{record.roleId,jdbcType=INTEGER},
       </if>
-      <if test="record.gender != null">
+      <if test="record.gender != null" >
         gender = #{record.gender,jdbcType=VARCHAR},
       </if>
-      <if test="record.classId != null">
+      <if test="record.classId != null" >
         class_id = #{record.classId,jdbcType=INTEGER},
       </if>
-      <if test="record.hours != null">
-        hours = #{record.hours,jdbcType=INTEGER},
+      <if test="record.hours != null" >
+        hours = #{record.hours,jdbcType=DOUBLE},
       </if>
-      <if test="record.iconId != null">
+      <if test="record.iconId != null" >
         icon_id = #{record.iconId,jdbcType=INTEGER},
       </if>
-      <if test="record.telephone != null">
+      <if test="record.telephone != null" >
         telephone = #{record.telephone,jdbcType=VARCHAR},
       </if>
-      <if test="record.qq != null">
+      <if test="record.qq != null" >
         qq = #{record.qq,jdbcType=VARCHAR},
       </if>
-      <if test="record.email != null">
+      <if test="record.email != null" >
         email = #{record.email,jdbcType=VARCHAR},
       </if>
-      <if test="record.wechat != null">
+      <if test="record.wechat != null" >
         wechat = #{record.wechat,jdbcType=VARCHAR},
       </if>
-      <if test="record.token != null">
+      <if test="record.token != null" >
         token = #{record.token,jdbcType=VARCHAR},
       </if>
-      <if test="record.validation != null">
+      <if test="record.validation != null" >
         validation = #{record.validation,jdbcType=VARCHAR},
       </if>
-      <if test="record.lastLoginTime != null">
+      <if test="record.birthDate != null" >
+        birth_date = #{record.birthDate,jdbcType=DATE},
+      </if>
+      <if test="record.politicalStatus != null" >
+        political_status = #{record.politicalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.age != null" >
+        age = #{record.age,jdbcType=INTEGER},
+      </if>
+      <if test="record.profile != null" >
+        profile = #{record.profile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastLoginTime != null" >
         last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map">
+  <update id="updateByExample" parameterType="map" >
     update user
     set id = #{record.id,jdbcType=INTEGER},
       student_id = #{record.studentId,jdbcType=VARCHAR},
@@ -310,7 +365,7 @@
       role_id = #{record.roleId,jdbcType=INTEGER},
       gender = #{record.gender,jdbcType=VARCHAR},
       class_id = #{record.classId,jdbcType=INTEGER},
-      hours = #{record.hours,jdbcType=INTEGER},
+      hours = #{record.hours,jdbcType=DOUBLE},
       icon_id = #{record.iconId,jdbcType=INTEGER},
       telephone = #{record.telephone,jdbcType=VARCHAR},
       qq = #{record.qq,jdbcType=VARCHAR},
@@ -318,66 +373,82 @@
       wechat = #{record.wechat,jdbcType=VARCHAR},
       token = #{record.token,jdbcType=VARCHAR},
       validation = #{record.validation,jdbcType=VARCHAR},
+      birth_date = #{record.birthDate,jdbcType=DATE},
+      political_status = #{record.politicalStatus,jdbcType=VARCHAR},
+      age = #{record.age,jdbcType=INTEGER},
+      profile = #{record.profile,jdbcType=VARCHAR},
       last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP}
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.selfcreate.qingxie.bean.user.User">
+  <update id="updateByPrimaryKeySelective" parameterType="com.selfcreate.qingxie.bean.user.User" >
     update user
-    <set>
-      <if test="studentId != null">
+    <set >
+      <if test="studentId != null" >
         student_id = #{studentId,jdbcType=VARCHAR},
       </if>
-      <if test="name != null">
+      <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
+      <if test="password != null" >
         password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="flag != null">
+      <if test="flag != null" >
         flag = #{flag,jdbcType=VARCHAR},
       </if>
-      <if test="roleId != null">
+      <if test="roleId != null" >
         role_id = #{roleId,jdbcType=INTEGER},
       </if>
-      <if test="gender != null">
+      <if test="gender != null" >
         gender = #{gender,jdbcType=VARCHAR},
       </if>
-      <if test="classId != null">
+      <if test="classId != null" >
         class_id = #{classId,jdbcType=INTEGER},
       </if>
-      <if test="hours != null">
-        hours = #{hours,jdbcType=INTEGER},
+      <if test="hours != null" >
+        hours = #{hours,jdbcType=DOUBLE},
       </if>
-      <if test="iconId != null">
+      <if test="iconId != null" >
         icon_id = #{iconId,jdbcType=INTEGER},
       </if>
-      <if test="telephone != null">
+      <if test="telephone != null" >
         telephone = #{telephone,jdbcType=VARCHAR},
       </if>
-      <if test="qq != null">
+      <if test="qq != null" >
         qq = #{qq,jdbcType=VARCHAR},
       </if>
-      <if test="email != null">
+      <if test="email != null" >
         email = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="wechat != null">
+      <if test="wechat != null" >
         wechat = #{wechat,jdbcType=VARCHAR},
       </if>
-      <if test="token != null">
+      <if test="token != null" >
         token = #{token,jdbcType=VARCHAR},
       </if>
-      <if test="validation != null">
+      <if test="validation != null" >
         validation = #{validation,jdbcType=VARCHAR},
       </if>
-      <if test="lastLoginTime != null">
+      <if test="birthDate != null" >
+        birth_date = #{birthDate,jdbcType=DATE},
+      </if>
+      <if test="politicalStatus != null" >
+        political_status = #{politicalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="profile != null" >
+        profile = #{profile,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
         last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.selfcreate.qingxie.bean.user.User">
+  <update id="updateByPrimaryKey" parameterType="com.selfcreate.qingxie.bean.user.User" >
     update user
     set student_id = #{studentId,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
@@ -386,7 +457,7 @@
       role_id = #{roleId,jdbcType=INTEGER},
       gender = #{gender,jdbcType=VARCHAR},
       class_id = #{classId,jdbcType=INTEGER},
-      hours = #{hours,jdbcType=INTEGER},
+      hours = #{hours,jdbcType=DOUBLE},
       icon_id = #{iconId,jdbcType=INTEGER},
       telephone = #{telephone,jdbcType=VARCHAR},
       qq = #{qq,jdbcType=VARCHAR},
@@ -394,6 +465,10 @@
       wechat = #{wechat,jdbcType=VARCHAR},
       token = #{token,jdbcType=VARCHAR},
       validation = #{validation,jdbcType=VARCHAR},
+      birth_date = #{birthDate,jdbcType=DATE},
+      political_status = #{politicalStatus,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      profile = #{profile,jdbcType=VARCHAR},
       last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -72,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, activity_id, count, status, stuff, condition, reg_time, interview_time, 
+    id, user_id, activity_id, count, status, stuff, `condition`, reg_time, interview_time,
     create_time
   </sql>
   <select id="selectByExample" parameterType="com.selfcreate.qingxie.bean.user.UserActivityExample" resultMap="BaseResultMap">
@@ -108,7 +108,7 @@
   <insert id="insert" parameterType="com.selfcreate.qingxie.bean.user.UserActivity">
     insert into user_activity (id, user_id, activity_id, 
       count, status, stuff, 
-      condition, reg_time, interview_time, 
+      `condition`, reg_time, interview_time,
       create_time)
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER}, 
       #{count,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{stuff,jdbcType=INTEGER}, 
@@ -137,7 +137,7 @@
         stuff,
       </if>
       <if test="condition != null">
-        condition,
+        `condition`,
       </if>
       <if test="regTime != null">
         reg_time,
@@ -210,7 +210,7 @@
         stuff = #{record.stuff,jdbcType=INTEGER},
       </if>
       <if test="record.condition != null">
-        condition = #{record.condition,jdbcType=INTEGER},
+        `condition` = #{record.condition,jdbcType=INTEGER},
       </if>
       <if test="record.regTime != null">
         reg_time = #{record.regTime,jdbcType=TIMESTAMP},
@@ -234,7 +234,7 @@
       count = #{record.count,jdbcType=INTEGER},
       status = #{record.status,jdbcType=INTEGER},
       stuff = #{record.stuff,jdbcType=INTEGER},
-      condition = #{record.condition,jdbcType=INTEGER},
+      `condition` = #{record.condition,jdbcType=INTEGER},
       reg_time = #{record.regTime,jdbcType=TIMESTAMP},
       interview_time = #{record.interviewTime,jdbcType=TIMESTAMP},
       create_time = #{record.createTime,jdbcType=TIMESTAMP}
@@ -261,7 +261,7 @@
         stuff = #{stuff,jdbcType=INTEGER},
       </if>
       <if test="condition != null">
-        condition = #{condition,jdbcType=INTEGER},
+        `condition` = #{condition,jdbcType=INTEGER},
       </if>
       <if test="regTime != null">
         reg_time = #{regTime,jdbcType=TIMESTAMP},
@@ -282,7 +282,7 @@
       count = #{count,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
       stuff = #{stuff,jdbcType=INTEGER},
-      condition = #{condition,jdbcType=INTEGER},
+      `condition`= #{condition,jdbcType=INTEGER},
       reg_time = #{regTime,jdbcType=TIMESTAMP},
       interview_time = #{interviewTime,jdbcType=TIMESTAMP},
       create_time = #{createTime,jdbcType=TIMESTAMP}

@@ -168,4 +168,12 @@ public class ActivityServiceImpl implements ActivityService {
         activityMapper.insertSelective(activity);
     }
 
+    /**
+     * 添加至我的收藏
+     * @param favourite
+     */
+    public void addFork(Favourite favourite){
+    	favouriteMapper.insertSelective(favourite);
+    }
+    
 }

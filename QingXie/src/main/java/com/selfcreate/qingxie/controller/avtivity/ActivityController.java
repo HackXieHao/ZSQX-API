@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.selfcreate.qingxie.bean.Msg;
+import com.selfcreate.qingxie.bean.user.Favourite;
 import com.selfcreate.qingxie.bean.user.UserActivity;
 import com.selfcreate.qingxie.service.activity.ActivityService;
 
@@ -142,6 +143,31 @@ public class ActivityController {
                 return Msg.error("无收藏活动数据");
             }
             return Msg.success("获取成功").add("UserActivityList", acs);
+        } catch (QingxieInnerException e) {
+            return Msg.error(e.getMessage());
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return Msg.error("系统异常");
+        }
+    }
+    
+    /**
+     * 添加活动至我的收藏
+     * @param favourite
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/addFork", method = RequestMethod.POST)
+    public Msg addFork(@RequestBody Favourite favourite){
+    	try {
+    		if(favourite != null){
+    			logger.info("》》》用户id为" + favourite.getUserId() + "请求添加" + favourite.getActivityId() +"到我的收藏");
+    			activityService.addFork(favourite);
+                return Msg.success("添加成功");
+    		}else{
+    			return Msg.error("传入信息有误！");
+    		}
+            
         } catch (QingxieInnerException e) {
             return Msg.error(e.getMessage());
         } catch (Exception e) {

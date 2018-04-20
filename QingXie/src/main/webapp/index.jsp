@@ -189,10 +189,19 @@
                 }
                 ajaxRequestPost("/user/3/experience/delete", 'DELETE', data);
             });
+            $("#addFork").click(function () {
+                var data = {
+                    'userId': 1,
+                    'activityId': 2,
+                }
+                ajaxRequestPost("/activity/addFork", 'POST', data);
+            });
         })
     </script>
 </head>
 <body>
+<h4>添加至我的收藏<input type="button" value="/activity/addFork" id="addFork"/></h4>
+
 <h4>我的志愿服务<input type="button" value="/{userId}/activities" id="getMyVolunteerService"/></h4>
 
 <h4>首页<input type="button" value="/activity/home" id="getAllActivities"/></h4>
