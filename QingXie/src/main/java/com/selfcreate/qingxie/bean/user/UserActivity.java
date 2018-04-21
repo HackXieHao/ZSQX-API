@@ -11,6 +11,9 @@ public class UserActivity {
 
     private Integer count;
 
+    /**
+     * 进行状态，1：报名，-1:报名失败，2:面试，-2:面试失败，3:参与志愿服务当中,0:默认值，无意义
+     */
     private Integer status;
 
     private Integer stuff;
@@ -22,6 +25,17 @@ public class UserActivity {
     private Date interviewTime;
 
     private Date createTime;
+
+    public UserActivity(Integer userId, Integer activityId, Integer count, Integer status, Integer stuff) {
+        this.userId = userId;
+        this.activityId = activityId;
+        this.count = count;
+        this.status = status;
+        this.stuff = stuff;
+    }
+
+    public UserActivity() {
+    }
 
     public Integer getId() {
         return id;

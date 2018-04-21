@@ -165,6 +165,76 @@ public class NoticeExample {
             return (Criteria) this;
         }
 
+        public Criteria andInformationIsNull() {
+            addCriterion("information is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInformationIsNotNull() {
+            addCriterion("information is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInformationEqualTo(String value) {
+            addCriterion("information =", value, "information");
+            return (Criteria) this;
+        }
+
+        public Criteria andInformationNotEqualTo(String value) {
+            addCriterion("information <>", value, "information");
+            return (Criteria) this;
+        }
+
+        public Criteria andInformationGreaterThan(String value) {
+            addCriterion("information >", value, "information");
+            return (Criteria) this;
+        }
+
+        public Criteria andInformationGreaterThanOrEqualTo(String value) {
+            addCriterion("information >=", value, "information");
+            return (Criteria) this;
+        }
+
+        public Criteria andInformationLessThan(String value) {
+            addCriterion("information <", value, "information");
+            return (Criteria) this;
+        }
+
+        public Criteria andInformationLessThanOrEqualTo(String value) {
+            addCriterion("information <=", value, "information");
+            return (Criteria) this;
+        }
+
+        public Criteria andInformationLike(String value) {
+            addCriterion("information like", value, "information");
+            return (Criteria) this;
+        }
+
+        public Criteria andInformationNotLike(String value) {
+            addCriterion("information not like", value, "information");
+            return (Criteria) this;
+        }
+
+        public Criteria andInformationIn(List<String> values) {
+            addCriterion("information in", values, "information");
+            return (Criteria) this;
+        }
+
+        public Criteria andInformationNotIn(List<String> values) {
+            addCriterion("information not in", values, "information");
+            return (Criteria) this;
+        }
+
+        public Criteria andInformationBetween(String value1, String value2) {
+            addCriterion("information between", value1, value2, "information");
+            return (Criteria) this;
+        }
+
+        public Criteria andInformationNotBetween(String value1, String value2) {
+            addCriterion("information not between", value1, value2, "information");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateTimeIsNull() {
             addCriterion("create_time is null");
             return (Criteria) this;
@@ -222,6 +292,76 @@ public class NoticeExample {
 
         public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
             addCriterion("create_time not between", value1, value2, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleIsNull() {
+            addCriterion("title is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleIsNotNull() {
+            addCriterion("title is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleEqualTo(String value) {
+            addCriterion("title =", value, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleNotEqualTo(String value) {
+            addCriterion("title <>", value, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleGreaterThan(String value) {
+            addCriterion("title >", value, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleGreaterThanOrEqualTo(String value) {
+            addCriterion("title >=", value, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleLessThan(String value) {
+            addCriterion("title <", value, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleLessThanOrEqualTo(String value) {
+            addCriterion("title <=", value, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleLike(String value) {
+            addCriterion("title like", value, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleNotLike(String value) {
+            addCriterion("title not like", value, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleIn(List<String> values) {
+            addCriterion("title in", values, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleNotIn(List<String> values) {
+            addCriterion("title not in", values, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleBetween(String value1, String value2) {
+            addCriterion("title between", value1, value2, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleNotBetween(String value1, String value2) {
+            addCriterion("title not between", value1, value2, "title");
             return (Criteria) this;
         }
     }
