@@ -5,12 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.selfcreate.qingxie.bean.user.User;
 import com.selfcreate.qingxie.bean.user.UserActivityHours;
 import com.selfcreate.qingxie.bean.user.UserActivityHoursVw;
 import com.selfcreate.qingxie.bean.user.UserActivityHoursVwExample;
 import com.selfcreate.qingxie.bean.user.UserActivityHoursVwExample.Criteria;
+import com.selfcreate.qingxie.bean.user.UserExample;
 import com.selfcreate.qingxie.dao.user.UserActivityHoursMapper;
 import com.selfcreate.qingxie.dao.user.UserActivityHoursVwMapper;
+import com.selfcreate.qingxie.dao.user.UserMapper;
 
 @Service
 public class UserActivityHourService {
@@ -20,6 +23,21 @@ public class UserActivityHourService {
 	
 	@Autowired
 	private UserActivityHoursVwMapper userActivityHoursVwMapper;
+	
+	@Autowired
+	private UserMapper userMapper;
+	
+	/**
+	 * 获取某个班级所有人
+	 * @param classId
+	 * @return
+	 */
+	public List<User> getUserByClassId(Integer classId){
+		UserExample example = new UserExample();
+		com.selfcreate.qingxie.bean.user.UserExample.Criteria criteria = example.createCriteria();
+		criteria.andClassIdEqualTo(classId);
+		return userMapper.selectByExample(example);
+	}
 	
 	/**
 	 * 获取某活动所有人工时详情

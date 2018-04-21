@@ -18,6 +18,23 @@ public class UserActivityService {
 	private UserActivityMapper userActivityMapper;
 	
 	/**
+	 * 获取活动对应的所有志愿者
+	 * @param activityId
+	 * @return
+	 */
+	public List<UserActivity> getAllVolunteersByActivityId(Integer activityId){
+		UserActivityExample example = new UserActivityExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andActivityIdEqualTo(activityId);
+		//状态为进行中或已结束的
+		List<Integer> status = new ArrayList<Integer>();
+		status.add(3);
+		status.add(4);
+		criteria.andStatusIn(status);
+		return userActivityMapper.selectByExample(example);
+	}
+	
+	/**
 	 * 获取某个活动已报名人数
 	 * @param activityId
 	 * @return

@@ -47,6 +47,26 @@ public class UserServiceImpl implements UserService {
     private final String INFO_INSERT = "INSERT";
 
     /**
+     * 根据多个学生的id获取User
+     * @param ids
+     * @return
+     */
+    public List<User> getUsersByIds(List<Integer> ids){
+    	UserExample example = new UserExample();
+    	Criteria criteria = example.createCriteria();
+    	criteria.andIdIn(ids);
+    	return userMapper.selectByExample(example);
+    }
+    
+    /**
+     * 更新一条记录
+     * @param user
+     */
+    public void update(User user){
+    	userMapper.updateByPrimaryKey(user);
+    }
+    
+    /**
      * 返回所有用户信息
      *
      * @return

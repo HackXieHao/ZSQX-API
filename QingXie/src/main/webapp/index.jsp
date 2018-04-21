@@ -213,10 +213,20 @@
             $("#getUserActivityHoursByActivityId").click(function () {
                 ajaxRequestGet("vhours/11/detailsByActivityId?page=2&size=2");
             });
+            $("#getUserHoursByClassId").click(function () {
+                ajaxRequestGet("vhours/44/general?page=1&size=3");
+            });
+            $("#getVolunteerNumber").click(function () {
+                ajaxRequestGet("activity/8/volunteers");
+            });
         })
     </script>
 </head>
 <body>
+<h4>获取活动对应的所有志愿者<input type="button" value="/{activityId}/volunteers" id="getVolunteerNumber"/></h4>
+
+<h4>获取班级所有学生总工时<input type="button" value="/vhours/{classId}/general" id="getUserHoursByClassId"/></h4>
+
 <h4>获取某活动所有人工时详情<input type="button" value="/vhours/{activityId}/detailsByActivityId" id="getUserActivityHoursByActivityId"/></h4>
 
 <h4>我的志愿工时查询<input type="button" value="/vhours/{userId}/detailsByUserId" id="getUserActivityHoursByUserId"/></h4>

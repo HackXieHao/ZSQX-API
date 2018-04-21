@@ -19,6 +19,11 @@ import java.util.Map;
  */
 
 public interface UserService {
+	
+	List getUsersByIds(List<Integer> ids);
+	
+	void update(User user);
+	
     /**
      * 获取所有User信息
      *

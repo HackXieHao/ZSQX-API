@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 import com.selfcreate.qingxie.bean.activity.*;
 import com.selfcreate.qingxie.exception.QingxieInnerException;
@@ -21,11 +22,14 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.selfcreate.qingxie.bean.Msg;
 import com.selfcreate.qingxie.bean.user.Favourite;
+import com.selfcreate.qingxie.bean.user.User;
 import com.selfcreate.qingxie.bean.user.UserActivity;
 import com.selfcreate.qingxie.bean.user.UserActivityHours;
 import com.selfcreate.qingxie.service.activity.ActivityService;
 import com.selfcreate.qingxie.service.user.UserActivityHourService;
 import com.selfcreate.qingxie.service.user.UserActivityService;
+import com.selfcreate.qingxie.service.user.UserService;
+import com.selfcreate.qingxie.util.ResponseUtil;
 
 @RequestMapping("/activity")
 @Controller
@@ -40,8 +44,25 @@ public class ActivityController {
 	@Autowired
 	private UserActivityHourService userActivityHourService;
 	
+	@Autowired
+	private UserService userService;
+	
 	private final Logger logger = Logger.getLogger(this.getClass());
 
+	@ResponseBody
+	@RequestMapping(value = "/{activityId}/volunteers", method = RequestMethod.GET)
+	public Msg getVolunteerNumber(@PathVariable("activityId") Integer activityId){
+		List<UserActivity> userActivities = userActivityService.getAllVolunteersByActivityId(activityId);
+		List<Integer> ids = new ArrayList<Integer>();
+		for (UserActivity userActivity :userActivities){
+			ids.add(userActivity.getUserId());
+		}
+		List<User> users = userService.getUsersByIds(ids);
+		String[] fileds = { "id", "studentId", "name", "telephone", "qq"};
+		List<Map<String, Object>> response = ResponseUtil.getResultMap(users, fileds);
+		return  Msg.success().add("volunteers", response);
+	}
+	
 	/**
 	 * 获取某个活动报名人数
 	 * @param activityId
