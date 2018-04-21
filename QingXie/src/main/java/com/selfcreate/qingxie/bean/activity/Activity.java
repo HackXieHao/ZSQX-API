@@ -196,4 +196,13 @@ public class Activity {
     public void setHomepagePic(String homepagePic) {
         this.homepagePic = homepagePic == null ? null : homepagePic.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Activity [id=" + id + "]";
+	}
+
+	
+    
+    
 }

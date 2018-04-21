@@ -3,7 +3,6 @@ package com.selfcreate.qingxie.controller.system;
 import com.selfcreate.qingxie.bean.Msg;
 import com.selfcreate.qingxie.exception.QingxieInnerException;
 import com.selfcreate.qingxie.service.file.ExcelTransfer;
-import com.selfcreate.qingxie.service.user.ClassInfoService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +24,6 @@ public class DataImportController {
 
     @Autowired
     ExcelTransfer excelTransfer;
-    ClassInfoService classInfoService;
 
     /**
      * FIXME:事务操作

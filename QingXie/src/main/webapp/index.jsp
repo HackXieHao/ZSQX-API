@@ -111,7 +111,9 @@
                     'needVolunteers': 10,
                     'place': '东院敬老院',
                     'type': 2,
-                    'status': 1
+                    'status': 1,
+                    'sponsor':'管理学院',
+                    'homepagePic':'/qingxie-img/pics/4373f88efa67250db592fe7679d46849.jpg'
                 }
                 ajaxRequestPost('activity/releaseActivity', 'PUT', data);
             });
@@ -194,12 +196,37 @@
                     'userId': 1,
                     'activityId': 2,
                 }
-                ajaxRequestPost("/activity/addFork", 'POST', data);
+                ajaxRequestPost("activity/addFork", 'POST', data);
+            });
+            $("#getHomePagePic").click(function () {
+                ajaxRequestGet("activity/getHomePagePic");
+            });
+            $("#boostActivity").click(function () {
+                ajaxRequestPost("activity/11/boostActivity", 'POST', null);
+            });
+            $("#getApplyNumber").click(function () {
+                ajaxRequestGet("activity/11/getApplyNumber");
+            });
+            $("#getUserActivityHoursByUserId").click(function () {
+                ajaxRequestGet("vhours/1/detailsByUserId");
+            });
+            $("#getUserActivityHoursByActivityId").click(function () {
+                ajaxRequestGet("vhours/11/detailsByActivityId?page=2&size=2");
             });
         })
     </script>
 </head>
 <body>
+<h4>获取某活动所有人工时详情<input type="button" value="/vhours/{activityId}/detailsByActivityId" id="getUserActivityHoursByActivityId"/></h4>
+
+<h4>我的志愿工时查询<input type="button" value="/vhours/{userId}/detailsByUserId" id="getUserActivityHoursByUserId"/></h4>
+
+<h4>获取某个活动报名人数<input type="button" value="/{activityId}/getApplyNumber" id="getApplyNumber"/></h4>
+
+<h4>活动推进<input type="button" value="/{activityId}/boostActivity" id="boostActivity"/></h4>
+
+<h4>获取首页轮播图<input type="button" value="/activity/getHomePagePic" id="getHomePagePic"/></h4>
+
 <h4>添加至我的收藏<input type="button" value="/activity/addFork" id="addFork"/></h4>
 
 <h4>我的志愿服务<input type="button" value="/{userId}/activities" id="getMyVolunteerService"/></h4>

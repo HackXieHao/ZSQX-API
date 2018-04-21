@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.selfcreate.qingxie.dao.user.UserActivityHoursMapper">
-  <resultMap id="BaseResultMap" type="com.selfcreate.qingxie.bean.user.UserActivityHours">
-    <id column="id" jdbcType="INTEGER" property="id" />
+<mapper namespace="com.selfcreate.qingxie.dao.user.UserActivityHoursVwMapper">
+  <resultMap id="BaseResultMap" type="com.selfcreate.qingxie.bean.user.UserActivityHoursVw">
+    <result column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="class_id" jdbcType="INTEGER" property="classId" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
     <result column="activity_id" jdbcType="INTEGER" property="activityId" />
+    <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
+    <result column="count" jdbcType="INTEGER" property="count" />
     <result column="voluntary_hours" jdbcType="INTEGER" property="voluntaryHours" />
     <result column="is_confirm" jdbcType="INTEGER" property="isConfirm" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,15 +72,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, activity_id, voluntary_hours, is_confirm, create_time
+    id, user_id, user_name, class_id, class_name, activity_id, activity_name, count, 
+    voluntary_hours, is_confirm
   </sql>
-  <select id="selectByExample" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHoursExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHoursVwExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from user_activity_hours
+    from view_user_activity_hours
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,32 +89,24 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from user_activity_hours
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from user_activity_hours
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHoursExample">
-    delete from user_activity_hours
+  <delete id="deleteByExample" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHoursVwExample">
+    delete from view_user_activity_hours
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHours">
-    insert into user_activity_hours (id, user_id, activity_id, 
-      voluntary_hours, is_confirm, create_time
-      )
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER}, 
-      #{voluntaryHours,jdbcType=INTEGER}, #{isConfirm,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
-      )
+  <insert id="insert" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHoursVw">
+    insert into view_user_activity_hours (id, user_id, user_name, 
+      class_id, class_name, activity_id, 
+      activity_name, count, voluntary_hours, 
+      is_confirm)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
+      #{classId,jdbcType=INTEGER}, #{className,jdbcType=VARCHAR}, #{activityId,jdbcType=INTEGER}, 
+      #{activityName,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, #{voluntaryHours,jdbcType=INTEGER}, 
+      #{isConfirm,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHours">
-    insert into user_activity_hours
+  <insert id="insertSelective" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHoursVw">
+    insert into view_user_activity_hours
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -117,17 +114,29 @@
       <if test="userId != null">
         user_id,
       </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="classId != null">
+        class_id,
+      </if>
+      <if test="className != null">
+        class_name,
+      </if>
       <if test="activityId != null">
         activity_id,
+      </if>
+      <if test="activityName != null">
+        activity_name,
+      </if>
+      <if test="count != null">
+        count,
       </if>
       <if test="voluntaryHours != null">
         voluntary_hours,
       </if>
       <if test="isConfirm != null">
         is_confirm,
-      </if>
-      <if test="createTime != null">
-        create_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -137,8 +146,23 @@
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
       </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="classId != null">
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="className != null">
+        #{className,jdbcType=VARCHAR},
+      </if>
       <if test="activityId != null">
         #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="activityName != null">
+        #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
       </if>
       <if test="voluntaryHours != null">
         #{voluntaryHours,jdbcType=INTEGER},
@@ -146,19 +170,16 @@
       <if test="isConfirm != null">
         #{isConfirm,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHoursExample" resultType="java.lang.Long">
-    select count(*) from user_activity_hours
+  <select id="countByExample" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHoursVwExample" resultType="java.lang.Long">
+    select count(*) from view_user_activity_hours
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update user_activity_hours
+    update view_user_activity_hours
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
@@ -166,8 +187,23 @@
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
+      <if test="record.userName != null">
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classId != null">
+        class_id = #{record.classId,jdbcType=INTEGER},
+      </if>
+      <if test="record.className != null">
+        class_name = #{record.className,jdbcType=VARCHAR},
+      </if>
       <if test="record.activityId != null">
         activity_id = #{record.activityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityName != null">
+        activity_name = #{record.activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.count != null">
+        count = #{record.count,jdbcType=INTEGER},
       </if>
       <if test="record.voluntaryHours != null">
         voluntary_hours = #{record.voluntaryHours,jdbcType=INTEGER},
@@ -175,54 +211,25 @@
       <if test="record.isConfirm != null">
         is_confirm = #{record.isConfirm,jdbcType=INTEGER},
       </if>
-      <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update user_activity_hours
+    update view_user_activity_hours
     set id = #{record.id,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      class_id = #{record.classId,jdbcType=INTEGER},
+      class_name = #{record.className,jdbcType=VARCHAR},
       activity_id = #{record.activityId,jdbcType=INTEGER},
+      activity_name = #{record.activityName,jdbcType=VARCHAR},
+      count = #{record.count,jdbcType=INTEGER},
       voluntary_hours = #{record.voluntaryHours,jdbcType=INTEGER},
-      is_confirm = #{record.isConfirm,jdbcType=INTEGER},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+      is_confirm = #{record.isConfirm,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHours">
-    update user_activity_hours
-    <set>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="activityId != null">
-        activity_id = #{activityId,jdbcType=INTEGER},
-      </if>
-      <if test="voluntaryHours != null">
-        voluntary_hours = #{voluntaryHours,jdbcType=INTEGER},
-      </if>
-      <if test="isConfirm != null">
-        is_confirm = #{isConfirm,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHours">
-    update user_activity_hours
-    set user_id = #{userId,jdbcType=INTEGER},
-      activity_id = #{activityId,jdbcType=INTEGER},
-      voluntary_hours = #{voluntaryHours,jdbcType=INTEGER},
-      is_confirm = #{isConfirm,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

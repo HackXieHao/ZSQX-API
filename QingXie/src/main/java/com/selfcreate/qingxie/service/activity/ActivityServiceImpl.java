@@ -176,4 +176,12 @@ public class ActivityServiceImpl implements ActivityService {
     	favouriteMapper.insertSelective(favourite);
     }
     
+    /**
+     * 更新活动记录
+     * @param activity
+     */
+    public void updateActivity(Activity activity){
+    	activityMapper.updateByPrimaryKey(activity);
+    }
+    
 }

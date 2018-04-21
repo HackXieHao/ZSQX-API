@@ -32,4 +32,6 @@ public interface ActivityService {
     void releaseActivity(Activity activity);
 
     void addFork(Favourite favourite);
+    
+    void updateActivity(Activity activity);
 }

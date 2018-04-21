@@ -21,7 +21,7 @@
  
 		<!-- 指定javabean的生成位置 -->
 
-		<javaModelGenerator targetPackage="com.selfcreate.qingxie.bean.activity"
+		<javaModelGenerator targetPackage="com.selfcreate.qingxie.bean.user"
 			targetProject=".\src\main\java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
@@ -29,18 +29,18 @@
 
 		<!-- 指定sql映射文件的生成位置 -->
 
-		<sqlMapGenerator targetPackage="mapper.activity" targetProject=".\src\main\resources">
+		<sqlMapGenerator targetPackage="mapper.user" targetProject=".\src\main\resources">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
 		<!-- 指定dao接口的生成位置 mapper接口 -->
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="com.selfcreate.qingxie.dao.activity" targetProject=".\src\main\java">
+			targetPackage="com.selfcreate.qingxie.dao.user" targetProject=".\src\main\java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		
 		<!-- 此处添加新建的表 -->
-		<table tableName="activity" domainObjectName="Activity">
+		<table tableName="view_user_activity_hours" domainObjectName="UserActivityHoursVw">
 		</table>
 		<!-- <table tableName="activity_details_picture" domainObjectName="ActivityDetailsPicture">
 			<property name="useActualColumnNames" value="true"></property>

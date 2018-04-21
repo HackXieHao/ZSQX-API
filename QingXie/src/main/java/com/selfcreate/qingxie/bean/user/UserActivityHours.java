@@ -2,12 +2,42 @@ package com.selfcreate.qingxie.bean.user;
 
 import java.util.Date;
 
-public class UserActivityHours extends UserActivityHoursKey {
+public class UserActivityHours {
+    private Integer id;
+
+    private Integer userId;
+
+    private Integer activityId;
+
     private Integer voluntaryHours;
 
     private Integer isConfirm;
 
     private Date createTime;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getActivityId() {
+        return activityId;
+    }
+
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
+    }
 
     public Integer getVoluntaryHours() {
         return voluntaryHours;
