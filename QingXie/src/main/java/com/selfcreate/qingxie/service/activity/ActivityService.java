@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.selfcreate.qingxie.bean.activity.HomePageActivity;
+import com.selfcreate.qingxie.bean.user.Favourite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,5 +31,9 @@ public interface ActivityService {
 
     void releaseActivity(Activity activity);
 
-    void signUp(Integer userId,Integer activityId);
+    void signUp(Integer userId, Integer activityId);
+
+    void addFork(Favourite favourite);
+
+    void updateActivity(Activity activity);
 }

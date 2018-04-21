@@ -51,6 +51,7 @@ public class UserServiceImpl implements UserService {
      * @param ids
      * @return
      */
+    @Override
     public List<User> getUsersByIds(List<Integer> ids){
     	UserExample example = new UserExample();
     	Criteria criteria = example.createCriteria();
@@ -62,6 +63,7 @@ public class UserServiceImpl implements UserService {
      * 更新一条记录
      * @param user
      */
+    @Override
     public void update(User user){
     	userMapper.updateByPrimaryKey(user);
     }

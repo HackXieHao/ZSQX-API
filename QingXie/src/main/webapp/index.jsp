@@ -14,7 +14,7 @@
             userId: null,
             studentId: null,
             name: null
-        }
+        };
 
         //模拟Get请求
         function ajaxRequestGet(uri) {
@@ -114,7 +114,7 @@
                     'status': 1,
                     'sponsor':'管理学院',
                     'homepagePic':'/qingxie-img/pics/4373f88efa67250db592fe7679d46849.jpg'
-                }
+                };
                 ajaxRequestPost('activity/releaseActivity', 'PUT', data);
             });
 
@@ -131,20 +131,20 @@
             });
 
             $("#joinActivity").click(function () {
-               alert("敬请期待~~") ;
-               ///{userId}/add
+                ajaxRequestPost("activity/"+$("input[name='identification']").val()+"/"
+                    +$("input[name='password']").val()+"/join");
             });
 
             $("#pushActivity").click(function () {
                 alert("敬请期待~~");
                 ///{activityId}/{userId}/join
-            })
+            });
 
             $("#login").click(function () {
                 var data = {
                     'studentId': $("input[name='identification']").val(),
                     'password': $("input[name='password']").val()
-                }
+                };
                 console.log(data.studentId);
                 console.log(data.password);
                 ajaxWithoutJson("/user/login", 'POST', data);
@@ -162,7 +162,7 @@
                     'telephone': '18988964207',
                     'email': 'evansqqlove@outlook.com',
                     'qq': '1036670250'
-                }
+                };
                 ajaxRequestPost("/user/3/info/update", 'PUT', data);
             });
             $("#updateExp").click(function () {
@@ -171,7 +171,7 @@
                     'userId': 3,
                     'activityName': '微笑百事达',
                     'end': new Date()
-                }
+                };
                 ajaxRequestPost("/user/3/experience/update", 'PUT', data);
             });
             $("#addExp").click(function () {
@@ -179,7 +179,7 @@
                     'userId': 3,
                     'activityName': '早起打卡',
                     'end': new Date()
-                }
+                };
                 ajaxRequestPost("/user/3/experience/add", 'POST', data);
             });
             $("#deleteExp").click(function () {
@@ -188,14 +188,14 @@
                     'userId': 3,
                     'activityName': '早起打卡',
                     'end': new Date()
-                }
+                };
                 ajaxRequestPost("/user/3/experience/delete", 'DELETE', data);
             });
             $("#addFork").click(function () {
                 var data = {
                     'userId': 1,
                     'activityId': 2,
-                }
+                };
                 ajaxRequestPost("activity/addFork", 'POST', data);
             });
             $("#getHomePagePic").click(function () {
@@ -219,6 +219,7 @@
             $("#getVolunteerNumber").click(function () {
                 ajaxRequestGet("activity/8/volunteers");
             });
+
         })
     </script>
 </head>
@@ -253,7 +254,7 @@
 
 <h4>发布推文<input type="button" value="/{userId}/add" id="pushActivity"/></h4>
 
-<h4>活动报名<input type="button" value="/{activityId}/{userId}/join" id="joinActivity"/></h4>
+<h4>活动报名(在下面的登陆接口测试中，分别填入activityid和userid)<input type="button" value="/{activityId}/{userId}/join" id="joinActivity"/></h4>
 
 <h4>活动照片上传
     <form action="/activity/3/pic/add" enctype="multipart/form-data" method="post">

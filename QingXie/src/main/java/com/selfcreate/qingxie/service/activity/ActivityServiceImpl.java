@@ -174,6 +174,7 @@ public class ActivityServiceImpl implements ActivityService {
      * 2.报名条件限制？无
      * 3.重复报名
      * 4.权限验证
+     * todo:验证是否在报名中
      * @param userId
      * @param activityId
      */
@@ -193,6 +194,23 @@ public class ActivityServiceImpl implements ActivityService {
             logger.error(e.getMessage(), e);
             throw new QingxieInnerException("数据库异常");
         }
+    }
+    /**
+     * 添加至我的收藏
+     * @param favourite
+     */
+    @Override
+    public void addFork(Favourite favourite){
+        favouriteMapper.insertSelective(favourite);
+    }
+
+    /**
+     * 更新活动记录
+     * @param activity
+     */
+    @Override
+    public void updateActivity(Activity activity){
+        activityMapper.updateByPrimaryKey(activity);
     }
 
 }
