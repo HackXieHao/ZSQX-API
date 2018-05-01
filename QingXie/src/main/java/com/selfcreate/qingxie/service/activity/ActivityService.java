@@ -34,4 +34,6 @@ public interface ActivityService {
     void addFork(Favourite favourite);
     
     void updateActivity(Activity activity);
+    
+    boolean isForkAgain(Integer userId, Integer activityId);
 }

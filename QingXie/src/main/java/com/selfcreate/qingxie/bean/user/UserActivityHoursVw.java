@@ -1,5 +1,7 @@
 package com.selfcreate.qingxie.bean.user;
 
+import java.util.Date;
+
 public class UserActivityHoursVw {
     private Integer id;
 
@@ -14,6 +16,8 @@ public class UserActivityHoursVw {
     private Integer activityId;
 
     private String activityName;
+
+    private Date activityStarTime;
 
     private Integer count;
 
@@ -75,6 +79,14 @@ public class UserActivityHoursVw {
 
     public void setActivityName(String activityName) {
         this.activityName = activityName == null ? null : activityName.trim();
+    }
+
+    public Date getActivityStarTime() {
+        return activityStarTime;
+    }
+
+    public void setActivityStarTime(Date activityStarTime) {
+        this.activityStarTime = activityStarTime;
     }
 
     public Integer getCount() {

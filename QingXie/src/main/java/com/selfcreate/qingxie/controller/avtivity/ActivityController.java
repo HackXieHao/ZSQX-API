@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.selfcreate.qingxie.bean.Msg;
+import com.selfcreate.qingxie.bean.user.ArriveConfirm;
 import com.selfcreate.qingxie.bean.user.Favourite;
 import com.selfcreate.qingxie.bean.user.User;
 import com.selfcreate.qingxie.bean.user.UserActivity;
@@ -49,6 +50,71 @@ public class ActivityController {
 	
 	private final Logger logger = Logger.getLogger(this.getClass());
 
+	/**
+	 * 活动签到修改
+	 * @param activityId
+	 * @param arriveConfirms
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/{activityId}/modifyConfirm", method = RequestMethod.POST)
+	public Msg modifyConfirm(@PathVariable("activityId") Integer activityId,@RequestBody ArriveConfirm[] arriveConfirms){
+		if(arriveConfirms != null){
+			for (ArriveConfirm arriveConfirm : arriveConfirms){
+				UserActivity userActivity = userActivityService.getByActivityIdAndUserId(activityId, arriveConfirm.getUserId());
+				if(userActivity != null){
+					int count = userActivity.getCount();
+					System.out.println(count);
+					if(arriveConfirm.getIsArrived()){
+						count++;
+						System.out.println(count);
+					}else{
+						count--;
+						System.out.println(count);
+					}
+					userActivity.setCount(count);
+					userActivityService.update(userActivity);
+				}else{
+					return Msg.error("该活动无此志愿者");
+				}
+				
+			}
+			return Msg.success("签到修改成功");
+		}
+		return Msg.error("传入数据有误");
+	}
+	
+	/**
+	 * 活动签到确认
+	 * @param activityId
+	 * @param arriveConfirms
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/{activityId}/arriveConfirm", method = RequestMethod.POST)
+	public Msg arriveConfirm(@PathVariable("activityId") Integer activityId,@RequestBody ArriveConfirm[] arriveConfirms){
+		if(arriveConfirms != null){
+			for (ArriveConfirm arriveConfirm : arriveConfirms){
+				UserActivity userActivity = userActivityService.getByActivityIdAndUserId(activityId, arriveConfirm.getUserId());
+				if(userActivity != null){
+					int count = userActivity.getCount();
+					System.out.println(count);
+					if(arriveConfirm.getIsArrived()){
+						count++;
+						System.out.println(count);
+						userActivity.setCount(count);
+						userActivityService.update(userActivity);
+					}
+				}else{
+					return Msg.error("该活动无此志愿者");
+				}
+				
+			}
+			return Msg.success("签到成功");
+		}
+		return Msg.error("传入数据有误");
+	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/{activityId}/volunteers", method = RequestMethod.GET)
 	public Msg getVolunteerNumber(@PathVariable("activityId") Integer activityId){
@@ -110,7 +176,7 @@ public class ActivityController {
 					}
 					userActivityHourService.add(userActivityHours);
 				}
-				return Msg.success("测试");
+				return Msg.success("推进成功");
 			}else{
 				status ++;
 				activity.setStatus(status);
@@ -132,7 +198,7 @@ public class ActivityController {
 	public Msg getHomePagePic() {
 		logger.info("》》》请求获取首页轮播图");
 		List<Activity> activities = activityService.getAll();
-		List<String> homePagePics = new ArrayList<String>();
+		List<HomePagePicInfo> homePagePicInfos = new ArrayList<HomePagePicInfo>();
 		Collections.sort(activities, new Comparator<Activity>() {
 			// 降序排列
 			@Override
@@ -151,10 +217,13 @@ public class ActivityController {
 		System.out.println(activities);
 		int i = 0;
 		for (Activity activity : activities) {
-			String homePagePic = activity.getHomepagePic();
-			if (homePagePic != null) {
+			if (activity.getHomepagePic() != null) {
+				HomePagePicInfo homePagePicInfo = new HomePagePicInfo();
+				homePagePicInfo.setActivityId(activity.getId());
+				homePagePicInfo.setGeneral(activity.getGeneral());
+				homePagePicInfo.setHomePagePic(activity.getHomepagePic());
 //				System.out.println(homePagePic);
-				homePagePics.add(homePagePic);
+				homePagePicInfos.add(homePagePicInfo);
 				i ++;
 			}
 			if (i == 4) {
@@ -162,7 +231,7 @@ public class ActivityController {
 			}
 		}
 //		System.out.println(homePagePics);
-		return Msg.success("处理成功").add("homePagePics", homePagePics);
+		return Msg.success("处理成功").add("homePagePics", homePagePicInfos);
 	}
 
 	/**
@@ -294,6 +363,9 @@ public class ActivityController {
 		try {
 			if (favourite != null) {
 				logger.info("》》》用户id为" + favourite.getUserId() + "请求添加" + favourite.getActivityId() + "到我的收藏");
+				if(activityService.isForkAgain(favourite.getUserId(), favourite.getActivityId())){
+					return Msg.error("该活动已收藏");
+				}
 				activityService.addFork(favourite);
 				return Msg.success("添加成功");
 			} else {

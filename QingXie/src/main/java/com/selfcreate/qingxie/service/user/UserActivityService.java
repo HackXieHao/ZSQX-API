@@ -18,6 +18,32 @@ public class UserActivityService {
 	private UserActivityMapper userActivityMapper;
 	
 	/**
+	 * 更新一条数据
+	 * @param userActivity
+	 */
+	public void update(UserActivity userActivity){
+		userActivityMapper.updateByPrimaryKey(userActivity);
+	}
+	
+	/**
+	 * 根据活动ID和用户ID获取用户活动数据
+	 * @param activityId
+	 * @param userId
+	 * @return
+	 */
+	public UserActivity getByActivityIdAndUserId(Integer activityId, Integer userId){
+		UserActivityExample example = new UserActivityExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andActivityIdEqualTo(activityId);
+		criteria.andUserIdEqualTo(userId);
+		if(userActivityMapper.selectByExample(example).size() > 0){
+			return userActivityMapper.selectByExample(example).get(0);
+		}else{
+			return null;
+		}
+	}
+	
+	/**
 	 * 获取活动对应的所有志愿者
 	 * @param activityId
 	 * @return
