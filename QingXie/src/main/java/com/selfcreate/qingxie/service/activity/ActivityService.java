@@ -36,4 +36,6 @@ public interface ActivityService {
     void updateActivity(Activity activity);
     
     boolean isForkAgain(Integer userId, Integer activityId);
+
+    void signUp(Integer userId,Integer activityId);
 }

@@ -5,9 +5,11 @@ import java.util.Date;
 public class Notice {
     private Integer id;
 
+    private String information;
+
     private Date createTime;
 
-    private String information;
+    private String title;
 
     public Integer getId() {
         return id;
@@ -15,6 +17,14 @@ public class Notice {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getInformation() {
+        return information;
+    }
+
+    public void setInformation(String information) {
+        this.information = information == null ? null : information.trim();
     }
 
     public Date getCreateTime() {
@@ -25,11 +35,11 @@ public class Notice {
         this.createTime = createTime;
     }
 
-    public String getInformation() {
-        return information;
+    public String getTitle() {
+        return title;
     }
 
-    public void setInformation(String information) {
-        this.information = information == null ? null : information.trim();
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 }

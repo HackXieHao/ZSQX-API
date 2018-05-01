@@ -12,7 +12,8 @@ public enum  ActivityStatusEnum {
     REG_REFUSED("报名失败",-1),
     INTERVIEWING("面试中",2),
     INT_REFUSED("面试失败",-2),
-    INVOKING("参与中",3),
+    INVOKING("进行中",3),
+    FINISHED("已完成",4),
     DEFAULT("无记录",0);
     /**
      * 状态描述
