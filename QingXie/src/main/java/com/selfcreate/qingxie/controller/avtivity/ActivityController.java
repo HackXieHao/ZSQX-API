@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 
 import com.selfcreate.qingxie.bean.activity.*;
 import com.selfcreate.qingxie.exception.QingxieInnerException;
@@ -33,7 +32,6 @@ import com.selfcreate.qingxie.bean.user.ArriveConfirm;
 import com.selfcreate.qingxie.bean.user.Favourite;
 import com.selfcreate.qingxie.bean.user.User;
 import com.selfcreate.qingxie.bean.user.UserActivity;
-import com.selfcreate.qingxie.bean.user.UserActivityHours;
 import com.selfcreate.qingxie.service.activity.ActivityService;
 import org.springframework.web.multipart.MultipartFile;
 
