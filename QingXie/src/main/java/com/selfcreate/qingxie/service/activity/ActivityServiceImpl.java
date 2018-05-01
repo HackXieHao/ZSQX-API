@@ -6,6 +6,7 @@ import com.selfcreate.qingxie.bean.activity.ActivityExample;
 import com.selfcreate.qingxie.bean.activity.HomePageActivity;
 import com.selfcreate.qingxie.bean.user.Favourite;
 import com.selfcreate.qingxie.bean.user.FavouriteExample;
+import com.selfcreate.qingxie.bean.user.FavouriteExample.Criteria;
 import com.selfcreate.qingxie.bean.user.UserActivity;
 import com.selfcreate.qingxie.bean.user.UserActivityExample;
 import com.selfcreate.qingxie.dao.activity.ActivityMapper;
@@ -40,6 +41,24 @@ public class ActivityServiceImpl implements ActivityService {
     @Autowired
     private FavouriteMapper favouriteMapper;
 
+    /**
+     * 判断是否重复收藏
+     * @param userId
+     * @param activityId
+     * @return
+     */
+    public boolean isForkAgain(Integer userId, Integer activityId){
+    	FavouriteExample example = new FavouriteExample();
+    	Criteria criteria = example.createCriteria();
+    	criteria.andUserIdEqualTo(userId);
+    	criteria.andActivityIdEqualTo(activityId);
+    	if(favouriteMapper.selectByExample(example).size() > 0){
+    		return true;
+    	}else{
+    		return false;
+    	}
+    }
+    
     /**
      * 根据活动id获取活动信息
      *

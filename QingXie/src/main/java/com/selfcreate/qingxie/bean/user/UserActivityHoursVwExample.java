@@ -1,6 +1,7 @@
 package com.selfcreate.qingxie.bean.user;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class UserActivityHoursVwExample {
@@ -551,6 +552,66 @@ public class UserActivityHoursVwExample {
 
         public Criteria andActivityNameNotBetween(String value1, String value2) {
             addCriterion("activity_name not between", value1, value2, "activityName");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityStarTimeIsNull() {
+            addCriterion("activity_star_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityStarTimeIsNotNull() {
+            addCriterion("activity_star_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityStarTimeEqualTo(Date value) {
+            addCriterion("activity_star_time =", value, "activityStarTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityStarTimeNotEqualTo(Date value) {
+            addCriterion("activity_star_time <>", value, "activityStarTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityStarTimeGreaterThan(Date value) {
+            addCriterion("activity_star_time >", value, "activityStarTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityStarTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("activity_star_time >=", value, "activityStarTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityStarTimeLessThan(Date value) {
+            addCriterion("activity_star_time <", value, "activityStarTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityStarTimeLessThanOrEqualTo(Date value) {
+            addCriterion("activity_star_time <=", value, "activityStarTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityStarTimeIn(List<Date> values) {
+            addCriterion("activity_star_time in", values, "activityStarTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityStarTimeNotIn(List<Date> values) {
+            addCriterion("activity_star_time not in", values, "activityStarTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityStarTimeBetween(Date value1, Date value2) {
+            addCriterion("activity_star_time between", value1, value2, "activityStarTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityStarTimeNotBetween(Date value1, Date value2) {
+            addCriterion("activity_star_time not between", value1, value2, "activityStarTime");
             return (Criteria) this;
         }
 

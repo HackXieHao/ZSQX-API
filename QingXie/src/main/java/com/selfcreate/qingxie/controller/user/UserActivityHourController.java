@@ -88,7 +88,7 @@ public class UserActivityHourController {
 	@RequestMapping(value = "/{userId}/detailsByUserId", method = RequestMethod.GET)
 	public Msg getUserActivityHoursByUserId(@PathVariable("userId") Integer userId){
 		List<UserActivityHoursVw> userActivityHoursVws = userActivityHourService.getByUserId(userId);
-		String[] fileds = { "id", "userId", "activityName", "count", "voluntaryHours"};
+		String[] fileds = { "id", "userId", "activityName", "count", "voluntaryHours","activityStarTime"};
 		List<Map<String, Object>> response = ResponseUtil.getResultMap(userActivityHoursVws, fileds);
 		return Msg.success().add("userActivityHours", response);
 	}

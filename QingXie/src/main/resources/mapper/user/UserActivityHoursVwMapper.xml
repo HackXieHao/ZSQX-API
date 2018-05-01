@@ -9,6 +9,7 @@
     <result column="class_name" jdbcType="VARCHAR" property="className" />
     <result column="activity_id" jdbcType="INTEGER" property="activityId" />
     <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
+    <result column="activity_star_time" jdbcType="TIMESTAMP" property="activityStarTime" />
     <result column="count" jdbcType="INTEGER" property="count" />
     <result column="voluntary_hours" jdbcType="INTEGER" property="voluntaryHours" />
     <result column="is_confirm" jdbcType="INTEGER" property="isConfirm" />
@@ -72,8 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, user_name, class_id, class_name, activity_id, activity_name, count, 
-    voluntary_hours, is_confirm
+    id, user_id, user_name, class_id, class_name, activity_id, activity_name, activity_star_time, 
+    count, voluntary_hours, is_confirm
   </sql>
   <select id="selectByExample" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHoursVwExample" resultMap="BaseResultMap">
     select
@@ -98,12 +99,12 @@
   <insert id="insert" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHoursVw">
     insert into view_user_activity_hours (id, user_id, user_name, 
       class_id, class_name, activity_id, 
-      activity_name, count, voluntary_hours, 
-      is_confirm)
+      activity_name, activity_star_time, count, 
+      voluntary_hours, is_confirm)
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
       #{classId,jdbcType=INTEGER}, #{className,jdbcType=VARCHAR}, #{activityId,jdbcType=INTEGER}, 
-      #{activityName,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, #{voluntaryHours,jdbcType=INTEGER}, 
-      #{isConfirm,jdbcType=INTEGER})
+      #{activityName,jdbcType=VARCHAR}, #{activityStarTime,jdbcType=TIMESTAMP}, #{count,jdbcType=INTEGER}, 
+      #{voluntaryHours,jdbcType=INTEGER}, #{isConfirm,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.selfcreate.qingxie.bean.user.UserActivityHoursVw">
     insert into view_user_activity_hours
@@ -128,6 +129,9 @@
       </if>
       <if test="activityName != null">
         activity_name,
+      </if>
+      <if test="activityStarTime != null">
+        activity_star_time,
       </if>
       <if test="count != null">
         count,
@@ -160,6 +164,9 @@
       </if>
       <if test="activityName != null">
         #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="activityStarTime != null">
+        #{activityStarTime,jdbcType=TIMESTAMP},
       </if>
       <if test="count != null">
         #{count,jdbcType=INTEGER},
@@ -202,6 +209,9 @@
       <if test="record.activityName != null">
         activity_name = #{record.activityName,jdbcType=VARCHAR},
       </if>
+      <if test="record.activityStarTime != null">
+        activity_star_time = #{record.activityStarTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.count != null">
         count = #{record.count,jdbcType=INTEGER},
       </if>
@@ -225,6 +235,7 @@
       class_name = #{record.className,jdbcType=VARCHAR},
       activity_id = #{record.activityId,jdbcType=INTEGER},
       activity_name = #{record.activityName,jdbcType=VARCHAR},
+      activity_star_time = #{record.activityStarTime,jdbcType=TIMESTAMP},
       count = #{record.count,jdbcType=INTEGER},
       voluntary_hours = #{record.voluntaryHours,jdbcType=INTEGER},
       is_confirm = #{record.isConfirm,jdbcType=INTEGER}
