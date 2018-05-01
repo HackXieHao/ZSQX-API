@@ -1,4 +1,4 @@
-﻿package com.selfcreate.qingxie.controller.avtivity;
+package com.selfcreate.qingxie.controller.avtivity;
 
 import java.util.*;
 
@@ -6,6 +6,7 @@ import com.selfcreate.qingxie.bean.activity.*;
 import com.selfcreate.qingxie.bean.user.Favourite;
 import com.selfcreate.qingxie.bean.user.User;
 import com.selfcreate.qingxie.bean.user.UserActivityHours;
+import com.selfcreate.qingxie.bean.user.ArriveConfirm;
 import com.selfcreate.qingxie.exception.QingxieInnerException;
 import com.selfcreate.qingxie.service.file.FileService;
 import com.selfcreate.qingxie.service.user.UserActivityHourService;
@@ -27,6 +28,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.selfcreate.qingxie.bean.Msg;
+import com.selfcreate.qingxie.bean.user.ArriveConfirm;
+import com.selfcreate.qingxie.bean.user.Favourite;
+import com.selfcreate.qingxie.bean.user.User;
 import com.selfcreate.qingxie.bean.user.UserActivity;
 import com.selfcreate.qingxie.service.activity.ActivityService;
 import org.springframework.web.multipart.MultipartFile;
@@ -52,59 +56,128 @@ public class ActivityController {
 
     /**
      * 获取某个活动报名人数
+     *
      * @param activityId
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/{activityId}/getApplyNumber", method = RequestMethod.GET)
-    public Msg getApplyNumber(@PathVariable("activityId") Integer activityId){
-        if(activityId != null){
+    public Msg getApplyNumber(@PathVariable("activityId") Integer activityId) {
+        if (activityId != null) {
             return Msg.success().add("applyNumber", userActivityService.getApplyNumber(activityId));
-        }else{
+        } else {
             return Msg.error();
         }
     }
 
     /**
+     * 活动签到修改
+     *
+     * @param activityId
+     * @param arriveConfirms
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/{activityId}/modifyConfirm", method = RequestMethod.POST)
+    public Msg modifyConfirm(@PathVariable("activityId") Integer activityId, @RequestBody ArriveConfirm[] arriveConfirms) {
+        if (arriveConfirms != null) {
+            for (ArriveConfirm arriveConfirm : arriveConfirms) {
+                UserActivity userActivity = userActivityService.getByActivityIdAndUserId(activityId, arriveConfirm.getUserId());
+                if (userActivity != null) {
+                    int count = userActivity.getCount();
+                    System.out.println(count);
+                    if (arriveConfirm.getIsArrived()) {
+                        count++;
+                        System.out.println(count);
+                    } else {
+                        count--;
+                        System.out.println(count);
+                    }
+                    userActivity.setCount(count);
+                    userActivityService.update(userActivity);
+                } else {
+                    return Msg.error("该活动无此志愿者");
+                }
+
+            }
+            return Msg.success("签到修改成功");
+        }
+        return Msg.error("传入数据有误");
+    }
+
+    /**
+     * 活动签到确认
+     *
+     * @param activityId
+     * @param arriveConfirms
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/{activityId}/arriveConfirm", method = RequestMethod.POST)
+    public Msg arriveConfirm(@PathVariable("activityId") Integer activityId, @RequestBody ArriveConfirm[] arriveConfirms) {
+        if (arriveConfirms != null) {
+            for (ArriveConfirm arriveConfirm : arriveConfirms) {
+                UserActivity userActivity = userActivityService.getByActivityIdAndUserId(activityId, arriveConfirm.getUserId());
+                if (userActivity != null) {
+                    int count = userActivity.getCount();
+                    System.out.println(count);
+                    if (arriveConfirm.getIsArrived()) {
+                        count++;
+                        System.out.println(count);
+                        userActivity.setCount(count);
+                        userActivityService.update(userActivity);
+                    }
+                } else {
+                    return Msg.error("该活动无此志愿者");
+                }
+
+            }
+            return Msg.success("签到成功");
+        }
+        return Msg.error("传入数据有误");
+    }
+
+    /**
      * 活动推进，1表示未开始，2表示进行中，3表示已结束
+     *
      * @param activityId
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/{activityId}/boostActivity", method = RequestMethod.POST)
-    public Msg boostActivity(@PathVariable("activityId") Integer activityId){
-        if(activityId != null){
+    public Msg boostActivity(@PathVariable("activityId") Integer activityId) {
+        if (activityId != null) {
             Activity activity = activityService.getById(activityId);
             int status = activity.getStatus();
-            if(status == 3){
+            if (status == 3) {
                 return Msg.error("活动已结束，无法推进");
-            }else if(status ==2){
-                status ++;
+            } else if (status == 2) {
+                status++;
                 activity.setStatus(status);
                 activityService.updateActivity(activity);
                 //此时推进则表示活动即将结束，需要给志愿者们保存工时
                 //1.获取该活动的所有志愿者
                 List<UserActivity> userActivities = userActivityService.getByActivityId(activityId);
-                for (UserActivity userActivity : userActivities){
+                for (UserActivity userActivity : userActivities) {
                     UserActivityHours userActivityHours = new UserActivityHours();
                     userActivityHours.setUserId(userActivity.getUserId());
                     userActivityHours.setActivityId(activityId);
                     //青协工作人员和活动负责人每次工时上浮2个
-                    if(userActivity.getStuff() == 1 || userActivity.getStuff() == 2){
+                    if (userActivity.getStuff() == 1 || userActivity.getStuff() == 2) {
                         userActivityHours.setVoluntaryHours((int) (userActivity.getCount() * (activity.getHourPerTime() + 2)));
-                    }else{
+                    } else {
                         userActivityHours.setVoluntaryHours((int) (userActivity.getCount() * activity.getHourPerTime()));
                     }
                     userActivityHourService.add(userActivityHours);
                 }
                 return Msg.success("测试");
-            }else{
-                status ++;
+            } else {
+                status++;
                 activity.setStatus(status);
                 activityService.updateActivity(activity);
                 return Msg.success("推进成功");
             }
-        }else{
+        } else {
             return Msg.error("请选择活动");
         }
     }
@@ -119,7 +192,7 @@ public class ActivityController {
     public Msg getHomePagePic() {
         logger.info("》》》请求获取首页轮播图");
         List<Activity> activities = activityService.getAll();
-        List<String> homePagePics = new ArrayList<String>();
+        List<HomePagePicInfo> homePagePicInfos = new ArrayList<HomePagePicInfo>();
         Collections.sort(activities, new Comparator<Activity>() {
             // 降序排列
             @Override
@@ -138,18 +211,21 @@ public class ActivityController {
         System.out.println(activities);
         int i = 0;
         for (Activity activity : activities) {
-            String homePagePic = activity.getHomepagePic();
-            if (homePagePic != null) {
+            if (activity.getHomepagePic() != null) {
+                HomePagePicInfo homePagePicInfo = new HomePagePicInfo();
+                homePagePicInfo.setActivityId(activity.getId());
+                homePagePicInfo.setGeneral(activity.getGeneral());
+                homePagePicInfo.setHomePagePic(activity.getHomepagePic());
 //				System.out.println(homePagePic);
-                homePagePics.add(homePagePic);
-                i ++;
+                homePagePicInfos.add(homePagePicInfo);
+                i++;
             }
             if (i == 4) {
                 break;
             }
         }
 //		System.out.println(homePagePics);
-        return Msg.success("处理成功").add("homePagePics", homePagePics);
+        return Msg.success("处理成功").add("homePagePics", homePagePicInfos);
     }
 
     /**
@@ -168,19 +244,21 @@ public class ActivityController {
             return Msg.error("活动信息不能为空");
         }
     }
+
     @ResponseBody
     @RequestMapping(value = "/{activityId}/volunteers", method = RequestMethod.GET)
-    public Msg getVolunteerNumber(@PathVariable("activityId") Integer activityId){
+    public Msg getVolunteerNumber(@PathVariable("activityId") Integer activityId) {
         List<UserActivity> userActivities = userActivityService.getAllVolunteersByActivityId(activityId);
         List<Integer> ids = new ArrayList<Integer>();
-        for (UserActivity userActivity :userActivities){
+        for (UserActivity userActivity : userActivities) {
             ids.add(userActivity.getUserId());
         }
         List<User> users = userService.getUsersByIds(ids);
-        String[] fileds = { "id", "studentId", "name", "telephone", "qq"};
+        String[] fileds = {"id", "studentId", "name", "telephone", "qq"};
         List<Map<String, Object>> response = ResponseUtil.getResultMap(users, fileds);
-        return  Msg.success().add("volunteers", response);
+        return Msg.success().add("volunteers", response);
     }
+
     /**
      * 返回首页数据
      * Activity:活动id，活动名称，首页图片路径，活动简介
@@ -285,18 +363,22 @@ public class ActivityController {
 
     /**
      * 添加活动至我的收藏
+     *
      * @param favourite
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/addFork", method = RequestMethod.POST)
-    public Msg addFork(@RequestBody Favourite favourite){
+    public Msg addFork(@RequestBody Favourite favourite) {
         try {
-            if(favourite != null){
-                logger.info("》》》用户id为" + favourite.getUserId() + "请求添加" + favourite.getActivityId() +"到我的收藏");
+            if (favourite != null) {
+                logger.info("》》》用户id为" + favourite.getUserId() + "请求添加" + favourite.getActivityId() + "到我的收藏");
+                if (activityService.isForkAgain(favourite.getUserId(), favourite.getActivityId())) {
+                    return Msg.error("该活动已收藏");
+                }
                 activityService.addFork(favourite);
                 return Msg.success("添加成功");
-            }else{
+            } else {
                 return Msg.error("传入信息有误！");
             }
 
@@ -359,21 +441,22 @@ public class ActivityController {
     /**
      * 活动照片上传接口
      * FIXME:权限验证
+     *
      * @param request
-     * @param userId 上传用户的id
+     * @param userId  上传用户的id
      * @param pic
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/{userId}/pic/add", method = RequestMethod.POST)
-    public Msg pushActivity(HttpServletRequest request, @PathVariable("userId") int userId, @RequestParam(value="pic",required=false)MultipartFile pic) {
-        if(pic==null||pic.getSize()==0){
+    public Msg pushActivity(HttpServletRequest request, @PathVariable("userId") int userId, @RequestParam(value = "pic", required = false) MultipartFile pic) {
+        if (pic == null || pic.getSize() == 0) {
             return Msg.error("上传图片为空");
         }
         try {
-            String accessPath=picService.save2Local(pic, pic.getOriginalFilename());
+            String accessPath = picService.save2Local(pic, pic.getOriginalFilename());
             return Msg.success("图片上传成功").add("picAccessPath", accessPath);
-        }catch (QingxieInnerException e){
+        } catch (QingxieInnerException e) {
             return Msg.error(e.getMessage());
         }
     }

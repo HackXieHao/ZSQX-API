@@ -132,7 +132,7 @@
 
             $("#joinActivity").click(function () {
                 ajaxRequestPost("activity/"+$("input[name='identification']").val()+"/"
-                    +$("input[name='password']").val()+"/join");
+                    +$("input[name='password']").val()+"/join","POST","");
             });
 
             $("#pushActivity").click(function () {
@@ -219,11 +219,36 @@
             $("#getVolunteerNumber").click(function () {
                 ajaxRequestGet("activity/8/volunteers");
             });
-
+            $("#arriveConfirm").click(function () {
+                var data = [{
+                    'userId': 1,
+                    'isArrived': true,
+                },
+                {
+                    'userId': 3,
+                    'isArrived': true,
+                }]
+                ajaxRequestPost("activity/2/arriveConfirm", 'POST', data);
+            });
+            $("#modifyConfirm").click(function () {
+                var data = [{
+                    'userId': 1,
+                    'isArrived': false,
+                },
+                {
+                    'userId': 3,
+                    'isArrived': false,
+                }]
+                ajaxRequestPost("activity/2/modifyConfirm", 'POST', data);
+            });
         })
     </script>
 </head>
 <body>
+<h4>活动签到修改<input type="button" value="/{activityId}/modifyConfirm" id="modifyConfirm"/></h4>
+
+<h4>活动签到确认<input type="button" value="/{activityId}/arriveConfirm" id="arriveConfirm"/></h4>
+
 <h4>获取活动对应的所有志愿者<input type="button" value="/{activityId}/volunteers" id="getVolunteerNumber"/></h4>
 
 <h4>获取班级所有学生总工时<input type="button" value="/vhours/{classId}/general" id="getUserHoursByClassId"/></h4>

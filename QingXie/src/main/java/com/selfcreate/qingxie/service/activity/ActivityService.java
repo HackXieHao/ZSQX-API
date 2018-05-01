@@ -31,9 +31,11 @@ public interface ActivityService {
 
     void releaseActivity(Activity activity);
 
-    void signUp(Integer userId, Integer activityId);
-
     void addFork(Favourite favourite);
 
     void updateActivity(Activity activity);
+
+    boolean isForkAgain(Integer userId, Integer activityId);
+
+    void signUp(Integer userId,Integer activityId);
 }

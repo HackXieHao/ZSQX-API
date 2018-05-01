@@ -43,22 +43,24 @@ public class ActivityServiceImpl implements ActivityService {
 
     /**
      * 判断是否重复收藏
+     *
      * @param userId
      * @param activityId
      * @return
      */
-    public boolean isForkAgain(Integer userId, Integer activityId){
-    	FavouriteExample example = new FavouriteExample();
-    	Criteria criteria = example.createCriteria();
-    	criteria.andUserIdEqualTo(userId);
-    	criteria.andActivityIdEqualTo(activityId);
-    	if(favouriteMapper.selectByExample(example).size() > 0){
-    		return true;
-    	}else{
-    		return false;
-    	}
+    @Override
+    public boolean isForkAgain(Integer userId, Integer activityId) {
+        FavouriteExample example = new FavouriteExample();
+        Criteria criteria = example.createCriteria();
+        criteria.andUserIdEqualTo(userId);
+        criteria.andActivityIdEqualTo(activityId);
+        if (favouriteMapper.selectByExample(example).size() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    
+
     /**
      * 根据活动id获取活动信息
      *
@@ -194,41 +196,45 @@ public class ActivityServiceImpl implements ActivityService {
      * 3.重复报名
      * 4.权限验证
      * todo:验证是否在报名中
+     *
      * @param userId
      * @param activityId
      */
     @Override
     public void signUp(Integer userId, Integer activityId) {
         //查询是否已存在报名信息
-        UserActivityExample example=new UserActivityExample();
+        UserActivityExample example = new UserActivityExample();
         example.createCriteria().andUserIdEqualTo(userId).andActivityIdEqualTo(activityId);
-        boolean hasSignedUp=userActivityMapper.selectByExample(example).size()>0;
-        if(hasSignedUp){
+        boolean hasSignedUp = userActivityMapper.selectByExample(example).size() > 0;
+        if (hasSignedUp) {
             throw new RepeatOperateException("重复报名");
         }
-        UserActivity userActivity=new UserActivity(userId,activityId,0,1,0);
-        try{
+        UserActivity userActivity = new UserActivity(userId, activityId, 0, 1, 0);
+        try {
             userActivityMapper.insert(userActivity);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e.getMessage(), e);
             throw new QingxieInnerException("数据库异常");
         }
     }
+
     /**
      * 添加至我的收藏
+     *
      * @param favourite
      */
     @Override
-    public void addFork(Favourite favourite){
+    public void addFork(Favourite favourite) {
         favouriteMapper.insertSelective(favourite);
     }
 
     /**
      * 更新活动记录
+     *
      * @param activity
      */
     @Override
-    public void updateActivity(Activity activity){
+    public void updateActivity(Activity activity) {
         activityMapper.updateByPrimaryKey(activity);
     }
 
