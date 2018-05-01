@@ -12,7 +12,7 @@
 <head>
     <meta charset="utf-8">
     <title>tail log</title>
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/core.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
     <style>
         html,body
         {

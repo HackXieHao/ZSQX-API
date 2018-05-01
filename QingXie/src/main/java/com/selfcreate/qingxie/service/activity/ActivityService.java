@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.selfcreate.qingxie.bean.activity.Activity;
 import com.selfcreate.qingxie.bean.activity.ActivityExample;
 import com.selfcreate.qingxie.bean.activity.ActivityExample.Criteria;
-import com.selfcreate.qingxie.bean.user.Favourite;
 import com.selfcreate.qingxie.bean.user.UserActivity;
 import com.selfcreate.qingxie.bean.user.UserActivityExample;
 import com.selfcreate.qingxie.dao.activity.ActivityMapper;
@@ -36,4 +35,6 @@ public interface ActivityService {
     void updateActivity(Activity activity);
     
     boolean isForkAgain(Integer userId, Integer activityId);
+
+    void signUp(Integer userId,Integer activityId);
 }
