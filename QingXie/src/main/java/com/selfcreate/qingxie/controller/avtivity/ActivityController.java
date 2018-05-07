@@ -235,7 +235,7 @@ public class ActivityController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/releaseActivity", method = RequestMethod.PUT)
+    @RequestMapping(value = "/releaseActivity", method = RequestMethod.POST)
     public Msg releaseActivity(@RequestBody Activity activity) {
         if (activity != null) {
         	activity.setCreateTime(new Date());

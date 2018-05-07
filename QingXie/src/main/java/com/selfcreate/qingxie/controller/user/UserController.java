@@ -118,7 +118,7 @@ public class UserController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/{userId}/experience/update", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{userId}/experience/update", method = RequestMethod.POST)
     public Msg updateExperiences(HttpServletRequest request,
                                  @PathVariable("userId") int userId,
                                  @RequestBody UserExperience experience) {
@@ -175,7 +175,7 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/{userId}/info/update", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{userId}/info/update", method = RequestMethod.POST)
     public Msg updateBasicInfo(HttpServletRequest request,
                                @PathVariable("userId") int userId,
                                @RequestBody User user) {
