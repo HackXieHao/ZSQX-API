@@ -1,4 +1,4 @@
-﻿package com.selfcreate.qingxie.controller.avtivity;
+package com.selfcreate.qingxie.controller.avtivity;
 
 import java.util.*;
 

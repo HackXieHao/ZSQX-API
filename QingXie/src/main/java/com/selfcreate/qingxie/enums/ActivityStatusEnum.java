@@ -29,7 +29,7 @@ public enum  ActivityStatusEnum {
      * @param status
      * @param code
      */
-    private ActivityStatusEnum(String status, int code) {
+    ActivityStatusEnum(String status, int code) {
         this.status = status;
         this.code = code;
     }

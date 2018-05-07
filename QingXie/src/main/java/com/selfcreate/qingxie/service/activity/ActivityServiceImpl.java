@@ -1,4 +1,4 @@
-package com.selfcreate.qingxie.service.activity;
+﻿package com.selfcreate.qingxie.service.activity;
 
 import com.selfcreate.qingxie.bean.activity.Activity;
 import com.selfcreate.qingxie.bean.activity.Activity4User;
